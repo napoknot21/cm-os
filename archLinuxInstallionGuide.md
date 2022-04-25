@@ -349,3 +349,5 @@ to unmount the partition
 ```
 umount -a
 ```
+
+**Made and write Charly Martin Avila (Napoknot21)**
