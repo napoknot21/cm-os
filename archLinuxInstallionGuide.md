@@ -77,6 +77,11 @@ Then, wz have to scan networks
 ```
 [iwd]# station YOUR_DEVICE scan
 ```
+> For exemple, we can run something like this :
+> ```
+> [iwd]# station wlan0 scan
+> ```
+>
 
 Once done, we list all the networks
 ```
@@ -126,4 +131,221 @@ cfdisk (partition of 100G)
 -> one /home partition (35G)
 -> the root [/] partition (60G)
 -> swap partition (4G)
+```
+
+formating partition
+```
+mkfs.fat -F32 /dev/EFI_PARTITION
+```
+```
+mkswap /dev/SWAP_PARTITION
+```
+```
+swapon /dev/SWAP_PARTITION
+```
+```
+mkfs.ext4 /dev/HOME_PARTITION
+```
+We encrypt the disk
+```
+cryptsetup -y -v [or --user-random] luksFormat /dev/ROOT_PARTITION 
+```
+Then, we have to open the encrypted partition
+```
+cryptsetup open /dev/ROOT_PARTITION cryptroot
+```
+Now we can formate it
+```
+mkfs.ext4 /dev/mapper/cryptroot
+```
+we mount all partitions
+```
+mount /dev/mapper/cryptroot /mnt
+```
+```
+mkdir /mnt/home
+```
+```
+mount /dev/HOME_PARTITION
+```
+```
+mkdir /mnt/boot
+```
+```
+mount /dev/EFI_PARTITION /mnt/boot
+```
+
+### installing base packages
+We have to install the linux kernel :
+```
+pacstrap /mnt base linux linux-firmware base-devel git vim grub efibootmgr nano
+```
+Depending of your micro processor , install :
+``` pacman -S intel-ucode``` or ``` pacman -S amd-ucode```
+
+We generate the file system table
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+we verify it's ok
+```
+cat /mnt/etc/fstab
+```
+
+changing to root
+```
+arch-chroot /mnt
+```
+
+we link the local clock
+```
+ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+```
+```
+hwclock --systohc
+```
+we generate locale.gen and we uncomment en_US.UTF-8 and all languages you want
+```
+nano /etc/locale.gen
+```
+
+We generate the locale generation
+```
+locale-gen
+```
+
+we config the langugae
+```
+echo "LANG=fr_FR.UTF-8" > /etc/locale.conf
+```
+
+we config the keymap
+```
+echo "KEYMAP=fr" > /etc/vconsole.conf
+```
+
+We name our device
+```
+echo "NAME OF YOUR PC or LAPTOP" > /etc/hostname
+```
+
+we modify the localhost port
+```
+nano /etc/hosts
+```
+>we write inside /etc/hosts
+> ```
+> 127.0.0.1   localhost
+> ::1         localhost
+> 127.0.1.1   [NAME OF YOUR DEVICE].localhost     [NAME OF YOUR DEVICE]
+> ```
+
+We gieve a password for the root user
+> We enter 2 times the password
+```
+passwd
+```
+
+we install some packeges
+```
+pacman -S networkmanager network-manager-applet bluez bluez-utils pulseaudio pulseaudio-bluetooth alsa-utils dosfstools mtools cups
+```
+We installed arch as encrypted , so let's modify some files :
+```
+nano /etc/mkinitcpio.conf
+```
+> Here we modify like this : 
+> > ["..." means that we don't touch those values]
+> ```
+> hooks = ( ... autodected keyboard keymap ... block encrypt filesystem fsck)
+> ```
+
+we relance la config
+```
+mkinitcpio -p linux
+```
+
+we install grub
+```
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
+```
+
+we modify the gub file to acces efibootmgr to detect windows
+> last line: we uncomment last line
+```
+nano /etc/default/grub
+```
+
+we config grub
+```
+grub-mkconfig -o /boot/grub/grub.cfg 
+```
+
+we ckeck 
+```
+blkid
+```
+
+then we copy de UUID of aour /dev/ROOT_PARTITION 
+> we modify again the grub deagult file
+
+we modifiy ```GRUB_CMDLINE_LINUX``` By
+```
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=[THE UUID ROOT_PARTITION]:cryptroot root=/dev/mapper/cryptroot"
+```
+
+We remake the grub config
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+we allow some services
+```
+systemctl enable NetworkManager
+```
+```
+systemctl enable bluetooth
+```
+```
+systemctl enable cups 
+```
+
+we create a local user
+```
+useradd -m charly
+```
+```
+passwd charly 
+```
+> we enter 2 times de password for the user
+```
+usermod -aG wheel,storage,video,audio,optical charly
+```
+
+we install sudo
+```
+pacman -S sudo
+```
+
+we modify /etc/sudoers
+```
+nano /etc/sudoers
+```
+
+we uncomment this line:
+```
+%wheel ALL=(ALL:ALL) ALL
+```
+
+We've finished !
+
+exit of arch(chroot
+```
+exit
+```
+
+to unmount the partition
+```
+umount -a
 ```
