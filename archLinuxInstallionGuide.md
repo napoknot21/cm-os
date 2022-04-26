@@ -105,11 +105,11 @@ ping archlinux.org
 ```
 > We're supposed to have a similar result like this : 
 > ```
-> 64 bytes from ... ... 
-> 64 bytes from ... ...
-> 64 bytes from ... ...  
+> 64 bytes from archlinux.org ... ... 
+> 64 bytes from archlinux.org ... ...
+> 64 bytes from archlinux.org ... ...  
 >```
-> ```CTRL + C ``` to intteromp the boucle
+> ```CTRL + C ``` to intteromp the loup
 
 If all it is ok, so let's continue !
 
@@ -120,18 +120,20 @@ lsblk
 ```
 > Depending of your disk type, the result could be like this :
 > ```
-> 
->
+> sd0
+> sda
+> |-sda1
+> |-sda2
 >
 > ```
 
-```
-cfdisk (partition of 100G)
--> one EFI partition (1G)
--> one /home partition (35G)
--> the root [/] partition (60G)
--> swap partition (4G)
-```
+> We're going to choose this config
+> ```
+> cfdisk (partition of 100G)
+> -> one EFI partition (1G)  [if you are not on dual boot]
+>-> one Root&Home partition (95G)
+>-> swap partition (5G)
+>```
 
 formating partition
 ```
@@ -143,44 +145,70 @@ mkswap /dev/SWAP_PARTITION
 ```
 swapon /dev/SWAP_PARTITION
 ```
+
+Now we are goinf to encrypt the disk to protect all file and to have more security
 ```
-mkfs.ext4 /dev/HOME_PARTITION
+mkfs.ext4 /dev/ROOT_HOME_PARTITION
 ```
 We encrypt the disk
+> We enter twice a password 
 ```
-cryptsetup -y -v [or --user-random] luksFormat /dev/ROOT_PARTITION 
+cryptsetup -y -v [or --user-random] luksFormat /dev/ROOT_HOME_PARTITION 
 ```
+
+
 Then, we have to open the encrypted partition
+> I named "cryptdisk" but you can name it as you want
 ```
-cryptsetup open /dev/ROOT_PARTITION cryptroot
+cryptsetup luksOpen [or just open] /dev/ROOT_HOME_PARTITION cryptdisk
 ```
-Now we can formate it
+
+We create the physic volume
 ```
-mkfs.ext4 /dev/mapper/cryptroot
+pvcreate /dev/mapper/cryptdisk
 ```
-we mount all partitions
+
+Now, we're going to create a group volume for encrypt the root and the home partition
+> Again, I named diskGroup , but you can name it as you want
 ```
-mount /dev/mapper/cryptroot /mnt
+vgcreate diskGroup /dev/mapper/cryptdisk
+```
+
+We create the logic Volumes for root
+```
+lvcreate -L 60G diskGroup -n root
+```
+And for home
+```
+lvcreate -l 100%FREE diskGroup -n home
+```
+
+Once done, we have to finish to format the partitions
+```
+mkfs.ext4 /dev/diskGroup/root
 ```
 ```
-mkdir /mnt/home
+mkfs.ext4 /dev/diskGroup/home
+```
+
+We finally mount all partitions !
+```
+mount /dev/diskGroup/root /mnt
 ```
 ```
-mount /dev/HOME_PARTITION
+mkdir /mnt/home && mount /dev/diskGroup/home /mnt/home
 ```
 ```
-mkdir /mnt/boot
+mkdir /mnt/boot && mount /dev/EFI_PARTITION
 ```
-```
-mount /dev/EFI_PARTITION /mnt/boot
-```
+
 
 ### installing base packages
 We have to install the linux kernel :
 ```
-pacstrap /mnt base linux linux-firmware base-devel git vim grub efibootmgr nano
+pacstrap /mnt base linux linux-firmware base-devel git vim grub efibootmgr os-prober nano [intel-ucode]
 ```
-Depending of your micro processor , install :
+> Depending of your micro processor , install :
 ``` pacman -S intel-ucode``` or ``` pacman -S amd-ucode```
 
 We generate the file system table
@@ -241,25 +269,28 @@ nano /etc/hosts
 > 127.0.1.1   [NAME OF YOUR DEVICE].localhost     [NAME OF YOUR DEVICE]
 > ```
 
-We gieve a password for the root user
+We giee a password for the root user
 > We enter 2 times the password
 ```
 passwd
 ```
 
-we install some packeges
+we install some packages
 ```
 pacman -S networkmanager network-manager-applet bluez bluez-utils pulseaudio pulseaudio-bluetooth alsa-utils dosfstools mtools cups
 ```
-We installed arch as encrypted , so let's modify some files :
+
+We need to install this package for encryption
 ```
-nano /etc/mkinitcpio.conf
+pacman -S lvm2
 ```
-> Here we modify like this : 
-> > ["..." means that we don't touch those values]
-> ```
-> hooks = ( ... autodected keyboard keymap ... block encrypt filesystem fsck)
-> ```
+
+
+Then, let's modify the HOOKS in ```/etc/mkinitcpio.conf```:
+> We're supposed to have this :
+```
+hooks = (base udev autodetect modconf block filesystems keyboard encrypt lvm2 fsck)
+ ```
 
 we relance la config
 ```
@@ -271,10 +302,17 @@ we install grub
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 ```
 
-we modify the gub file to acces efibootmgr to detect windows
-> last line: we uncomment last line
+we ckeck the UUIDs of our partitions by
 ```
-nano /etc/default/grub
+blkid
+```
+we modify the grub default file ``` /etc/default/grub ```
+> we copy de UUID of our ```/dev/ROOT_HOME_PARTITION``` from the out of ```blkid``` 
+> >  and we uncomment ```GRUB_ENABLE_CRYPTODISK=y``` and ```GRUB_DISABLE_OS_PROBER=false```
+>
+> we modifiy ```GRUB_CMDLINE_LINUX```  By
+```
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=[THE UUID ROOT_HOME_PARTITION]:cryptdisk root=/dev/diskGroup/root"
 ```
 
 we config grub
@@ -282,23 +320,6 @@ we config grub
 grub-mkconfig -o /boot/grub/grub.cfg 
 ```
 
-we ckeck 
-```
-blkid
-```
-
-then we copy de UUID of aour /dev/ROOT_PARTITION 
-> we modify again the grub deagult file
-
-we modifiy ```GRUB_CMDLINE_LINUX``` By
-```
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=[THE UUID ROOT_PARTITION]:cryptroot root=/dev/mapper/cryptroot"
-```
-
-We remake the grub config
-```
-grub-mkconfig -o /boot/grub/grub.cfg
-```
 
 we allow some services
 ```
@@ -340,7 +361,7 @@ we uncomment this line:
 
 We've finished !
 
-exit of arch(chroot
+exit of arch-chroot
 ```
 exit
 ```
@@ -349,5 +370,7 @@ to unmount the partition
 ```
 umount -a
 ```
+Then turn off your machine by ```shutdown now``` and take of the usb-driver :
 
-**Made and write Charly Martin Avila (Napoknot21)**
+
+**Made and written Charly Martin Avila (Napoknot21)**
