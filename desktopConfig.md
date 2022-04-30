@@ -26,3 +26,7 @@ sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
 
 If you want other fonts, you can find them [here](nerdfonts.com)
 
+For hacking utils, you can install :
+```
+sudo pacman -S net-tools nmap ettercap metasploit wiresharck-qt wireshark-cli
+```
