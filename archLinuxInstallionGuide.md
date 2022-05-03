@@ -118,21 +118,19 @@ To check all disks and their partitons :
 ```
 lsblk
 ```
-> Depending of your disk type, the result could be like this :
-> ```
-> sd0
-> sda
-> |-sda1
-> |-sda2
->
-> ```
+
+Now, we are going to partition the disk
+```
+cfdisk
+```
 
 > We're going to choose this config
+> > This config is based of 100Go so, if your hard disk or partition has not 100Go do a simple math calculus to know appromitaly how space you have to give to all partitions
 > ```
-> cfdisk (partition of 100G)
+> (partition of 100G)
 > -> one EFI partition (1G)  [if you are not on dual boot]
 >-> one Root&Home partition (95G)
->-> swap partition (5G)
+>-> swap partition (4G)
 >```
 
 formating partition
@@ -146,7 +144,7 @@ mkswap /dev/SWAP_PARTITION
 swapon /dev/SWAP_PARTITION
 ```
 
-Now we are goinf to encrypt the disk to protect all file and to have more security
+Now we are going to encrypt the disk in order to protect all (personal) files and data
 ```
 mkfs.ext4 /dev/ROOT_HOME_PARTITION
 ```
@@ -373,4 +371,4 @@ umount -a
 Then turn off your machine by ```shutdown now``` and take of the usb-driver :
 
 
-**Made and written Charly Martin Avila (Napoknot21)**
+**Made and written by Charly Martin Avila (Napoknot21)**
