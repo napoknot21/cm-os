@@ -99,3 +99,32 @@ window :
   opactiy: 0.9
 ```
 Finally, close all active terminals and voilà !
+
+# Rofi
+Rofi is window menu selector. 
+We install rofi bu
+```
+sudo pacman -S rofi
+```
+
+We install some nice icons
+```
+sudo pacman -S papirus-icon-theme
+```
+
+Whe chose a theme
+```
+rofi-select-theme
+```
+
+We modify the ```~/.config/rofi/config.rasi``` as followed
+```
+onfiguration {
+    modi: "window,drun,ssh,combi";
+    ssh-client : "ssh";
+    icon-theme : "Papirus";
+    combi-modi: "window,drun,ssh";
+    show-icons : true;
+}
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+```
