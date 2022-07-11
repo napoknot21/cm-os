@@ -1,11 +1,11 @@
 #!/bin/sh
 
-home = $HOME
+echo -n "Start installation ? [y/n] : "
+read my_var
 
-
-sys_pc = $'ls /sys/firmware/efi'
-
-
-n -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
-hwclock --systohc
-sed -i 
+if [ my_var = "y" ];
+then 
+echo "Starting installation..."
+else
+echo "Exiting of process"
+fi
