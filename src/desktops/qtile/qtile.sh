@@ -1,1 +1,1 @@
-sudo pacman -S qtile
+pacman -S qtile
