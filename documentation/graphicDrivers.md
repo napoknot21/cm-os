@@ -1,5 +1,5 @@
-# Intel Drivers
-This section helps you to install manually best and necessary intel drivers in order to get a good graphic experience on arch linux
+# Graphics Drivers
+This section helps you to install manually best and necessary intel/AMD/Nvidia drivers in order to get a better graphic experience on arch linux
 
 ## Basic commands
 The basic graphic package is ```mesa```, run :
@@ -11,7 +11,7 @@ sudo pacman -S mesa
 ## Intel
 For not modesty mode, install the following packages
 ```
-sudo pacman -S ocl-cd lib32-ocl-icd intel-compute-runtime xf86-video-intel intel-media-driver 
+sudo pacman -S ocl-icd lib32-ocl-icd intel-compute-runtime xf86-video-intel intel-media-driver 
 ```
 Then, modify the ```/etc/modprobe.d/i915.conf``` file (if it does not exit, create it) and put :
 ```
@@ -57,9 +57,9 @@ Install the vulkan amd packages
 sudo pacman -S lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
 ```
 
-### Nvidia
+## Nvidia
 
 Install the packages
 ```
-sudo pacman -S nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-icd-loader 
+sudo pacman -S nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings
 ```
