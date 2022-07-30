@@ -11,7 +11,7 @@ sudo pacman -S mesa
 ## Intel
 For not modesty mode, install the following packages
 ```
-sudo pacman -S ocl-icd lib32-ocl-icd intel-compute-runtime xf86-video-intel intel-media-driver 
+sudo pacman -S ocl-icd intel-compute-runtime xf86-video-intel intel-media-driver 
 ```
 Then, modify the ```/etc/modprobe.d/i915.conf``` file (if it does not exit, create it) and put :
 ```
@@ -48,18 +48,18 @@ We're supposed to have an output like this:
 ### Vulkan intel
 We install the vulkan intel packages
 ```
-sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
+sudo pacman -S vulkan-intel vulkan-icd-loader
 ```
 
 ### Vulkan AMD
 Install the vulkan amd packages
 ```
-sudo pacman -S lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
+sudo pacman -S vulkan-radeon vulkan-icd-loader
 ```
 
 ## Nvidia
 
 Install the packages
 ```
-sudo pacman -S nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings
+sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings
 ```
