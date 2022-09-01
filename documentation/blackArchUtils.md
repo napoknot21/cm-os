@@ -1,6 +1,6 @@
 # Black Arch Utils
 
-This guide will help you to install the black-arch repos for pentesting or hacking proposes.
+Following the arch linux's philosophy (only install the packages we need), this guide will help you to install the black-arch repos for pentesting or hacking proposes.
 
 > Note: This action is NOT going to install ALL blackarch packages (+4G) This just allow you to install them !
 
@@ -43,7 +43,7 @@ sudo pacman -Sy
 >  community is up to date
 >  blackarch is up to date**
 > ````
-> So, now we can install any black arch util !
+> So, now we'll be able to install any black arch util !
 
 ## Installing best utils
 
@@ -85,12 +85,6 @@ A linked database from [exploitdb](https://exploitdb.org) to search for vulnerab
 sudo pacman -S exploitdb
 ```
 
-### FTP
-The File Transfer Protocol (FTP) tool client
-```
-sudo pacman -S ftp
-```
-
 ### SmbClient
 A ftp-like client tool to access SMB/CIFS resources on servers
 ```
@@ -109,10 +103,21 @@ Interactive Windows Shell for connecting to remote Windows servers
 sudo pacman -S evil-winrm
 ```
 
-## Some interesting packages
-Here we have some interesting packages for pentesting and hacking.
+## Some interesting packages and websites
+Here we have some interesting packages and websites for pentesting and hacking.
+
+One Liner command for the packages
 ```
-sudo pacman -S metasploit ettercap responder telnet amidi tcpdump netcat gobuster dirbuster burpsuite crackmapexec
+sudo pacman -S metasploit ettercap responder telnet amidi tcpdump netcat gobuster dirbuster burpsuite crackmapexec sqlmapper
 ```
+
+Table of sites and github repos:
+
+1. https://gtfobins.github.io/ (binaries privileges)
+2. https://www.exploit-db.com/ (exploit database)
+3. https://www.revshells.com/ (reverse shells)
+4. https://crackstation.net/ (crack hashes & password)
+5. https://github.com/veracode-research/rogue-jndi (rogue-jndi tool)
+6. https://github.com/danielmiessler/SecLists (dictionaries for pentesting)
 
 So, now we can install any black arch util !
