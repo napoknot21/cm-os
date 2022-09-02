@@ -33,7 +33,7 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -48,17 +48,18 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-     # ------------ Programs Configs ------------
+
+    # ------------ Programs Configs ------------
 
     #Alacritty (terminal)
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
-    #Firefox (browser)
-    Key([mod], "b", lazy.spawn("firefox"), desc="Open a new window of the browser"),
-    Key([mod, "shift"], "b", lazy.spawn("firefox --private-window"), desc="Open a new private window of the browser"),
+    #Brave (browser)
+    Key([mod], "b", lazy.spawn("brave"), desc="Open a new window of the browser"),
+    Key([mod, "shift"], "b", lazy.spawn("brave --incognito"), desc="Open a new private window of the browser"),
 
     #rofi (menu)
-    Key([mod], "m", lazy.spawn("rofi -show run"), desc="open the rofi menu"),
+    Key([mod], "m", lazy.spawn("rofi -show drun"), desc="open the rofi menu"), #we exec drun in order to show icons
     Key([mod, "shift"], "m", lazy.spawn("rofi -show"), desc="list all the active windows"),
 
     #scrot (screenshot)
@@ -67,6 +68,13 @@ keys = [
     #redshitf (temperature)
     Key([mod], "x", lazy.spawn("redshift -O 2400"), desc="turns temperature to 2400 for hurt less the eyes"),
     Key([mod, "shift"], "x", lazy.spawn("redshift -x"), desc="reset device temperature"),
+
+    #Visual Studio Code (code editor)
+    Key([mod], "v", lazy.spawn("code"), desc="open vs code window"),
+
+    #tor (anonymous browser)
+    Key([mod], "t", lazy.spawn("torbrowser-launcher"), desc="open a tor browser window"),
+
 
     # ------------ Hardware Configs ------------
 
@@ -82,6 +90,7 @@ keys = [
     #Keboard layout
     Key([mod], "f", lazy.spawn("setxkbmap fr"), desc="change keyboard layout to french - fr"),
     Key([mod], "u", lazy.spawn("setxkbmap us"), desc="change keyboard layout to english - us"),
-    Key([mod], "e", lazy.spawn("setxkbmap es"), desc="change keyboard layout to spanish - es")
-
+    Key([mod], "e", lazy.spawn("setxkbmap es"), desc="change keyboard layout to spanish - es"),
+    Key([mod], "d", lazy.spawn("setxkbmap de"), desc="change keyboard layout to german - de"),
+    Key([mod], "n", lazy.spawn("setxkbmap nl"), desc="change keyboard layout to dutch - nl")
 ]
