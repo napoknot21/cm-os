@@ -12,6 +12,7 @@ sudo pacman -S fish starship
 echo "[*] Setting up the interactive shell..."
 rm ~/.config/fish/config.fish
 mv ./src/config.fish ~/.config/fish/
+mv ./src/starship.toml ~/.config/
 
 # Success message
 sleep 2
