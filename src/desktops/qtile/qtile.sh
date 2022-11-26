@@ -2,20 +2,29 @@
 
 # Qtile script
 
-echo "[!] QTILE !"
+echo -e "[!] QTILE !\n"
 
 # Package installation
-echo "[*] Installing the package..."
+echo -e "[*] Installing the package...\n"
 sudo pacman -S qtile
 
 # Config
-echo "[*] Setting up the hackable tiling window manager..."
-rm -r ~/.config/qtile
+echo -e "\n[*] Setting up the hackable twiling window manager...\n"
+
+DIR_QTILE="~/.config/qtile"
+
+if [[ -n $DIR_QRTILE  ]]; then
+	rm -r $DIR_QTILE
+else
+	mkdir -p $DIR_QTILE
+fi
+
 mv ./src/* ~/.config/qtile/
 
+
 sleep 3
-echo "[*] Config successfully copied !"
+echo -e "[*] Config successfully copied !\n"
 sleep 1
-echo "[*] Moving on to the next step..."
+echo -e "[*] Moving on to the next step...\n"
 
 # Author @napoknot21
