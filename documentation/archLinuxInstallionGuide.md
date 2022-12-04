@@ -197,7 +197,7 @@ mount /dev/diskGroup/root /mnt
 mkdir /mnt/home && mount /dev/diskGroup/home /mnt/home
 ```
 ```
-mkdir /mnt/boot && mount /dev/EFI_PARTITION
+mkdir /mnt/boot && mount /dev/EFI_PARTITION /mnt/boot
 ```
 
 
@@ -253,8 +253,10 @@ echo "KEYMAP=fr" > /etc/vconsole.conf
 
 We name our device
 ```
-echo "NAME OF YOUR PC or LAPTOP" > /etc/hostname
+echo "NAME_OF_YOUR_PC or LAPTOP" > /etc/hostname
 ```
+> ex. echo "mylaptop" > /etc/hostname
+
 
 we modify the localhost port
 ```
@@ -267,7 +269,7 @@ nano /etc/hosts
 > 127.0.1.1   [NAME OF YOUR DEVICE].localhost     [NAME OF YOUR DEVICE]
 > ```
 
-We giee a password for the root user
+We set a password for the root user
 > We enter 2 times the password
 ```
 passwd
