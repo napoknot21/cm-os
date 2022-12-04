@@ -34,12 +34,12 @@ layouts = [
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(
-        border_width=4
+        border_width=3
     ),
     # layout.MonadWide(),
     # layout.RatioTile(),
     layout.Tile(
-        border_width=4
+        border_width=3
     ),
     # layout.TreeTab(),
     # layout.VerticalTile(),
@@ -88,9 +88,9 @@ screens = [
                 ),
                 widget.TextBox(
                     foreground=["#F07178","#F07178"],
-                    text="", # !  Icon: nf-oct-triangle_left
-                    fontsize=38,
-                    padding=-3
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=23,
+                    padding=-6
                 ),    
                 widget.CurrentLayoutIcon(
                     foreground=["#0f101a","#0f101a"],
@@ -117,9 +117,9 @@ screens = [
                 widget.TextBox(
                     foreground=["#0f101a","#0f101a"],
                     background=["#F07178","#F07178"],
-                    text="", # !  Icon: nf-oct-triangle_left
-                    fontsize=38,
-                    padding=-3
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=23,
+                    padding=-6
                 ),
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
@@ -136,9 +136,9 @@ screens = [
                 widget.TextBox(
                     foreground=["#a151d3","#a151d3"],
                     background=["#0f101a","#0f101a"],
-                    text="", # !  Icon: nf-oct-triangle_left
-                    fontsize=38,
-                    padding=-3
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=23,
+                    padding=-6
                 ),  
                 widget.TextBox(
                     background=["#a151d3","#a151d3"],
@@ -195,9 +195,9 @@ screens = [
                 ),
                 widget.TextBox(
                     foreground=["#F07178","#F07178"],
-                    text="", # !  Icon: nf-oct-triangle_left
-                    fontsize=38,
-                    padding=-3
+                    text="", # !  Icon: nf-cod-triangle_left
+                    fontsize=23,
+                    padding=-6
                 ),    
                 widget.CurrentLayoutIcon(
                     foreground=["#0f101a","#0f101a"],
@@ -230,9 +230,9 @@ screens = [
                 widget.TextBox(
                     foreground=["#a151d3","#a151d3"],
                     background=["#F07178","#F07178"],
-                    text="", # !  Icon: nf-oct-triangle_left
-                    fontsize=38,
-                    padding=-3
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=23,
+                    padding=-6
                 ),  
                 widget.TextBox(
                     background=["#a151d3","#a151d3"],
