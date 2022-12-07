@@ -63,3 +63,5 @@ Install the packages
 ```
 sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings
 ```
+
+> Warning: xf86-input-synaptics is no longer actively updated
