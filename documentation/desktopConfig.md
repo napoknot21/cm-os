@@ -24,7 +24,11 @@ Install fonts (yes, bc the default ones are not really cutes)
 sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
 ```
 
-If you want other fonts, you can find them [here](nerdfonts.com)
+If you want other fonts, you can find them [here](nerdfonts.com) or install
+```
+paru -S nerd-fonts-complete
+```
+> This going to install all nerd-fonts fonts
 
 
 # Paru
