@@ -10,6 +10,11 @@ We need audio so we install:
 sudo pacman -S pulseaudio pavucontrol
 ```
 
+Install some plugins for a better sound quality !
+```
+sudo pacman -S alsa-firmware alsa-plugins
+```
+
 > NOTE !
 > > If ever pulseaudio doesn't detect your sound card, try to install this:
 > > ``` 
@@ -17,7 +22,15 @@ sudo pacman -S pulseaudio pavucontrol
 > > ```
 > > That's normally fix your pb of audio
 > 
->
+> plus, you can install a package for improving the sound expirence !
+> ```
+> sudo pacman -S alsa-oss
+> ```
+> Then, we load some kernel modules !
+> ```
+> sudo modprobe snd-seq-oss snd-pcm-oss snd-mixer-oss
+> ```
+
 
 Install fonts (yes, bc the default ones are not really cutes)
 ```
