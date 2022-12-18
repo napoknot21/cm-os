@@ -65,3 +65,5 @@ sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings
 ```
 
 > Warning: xf86-input-synaptics is no longer actively updated
+
+For more details or packages, see [this](https://archlinux.org/groups/x86_64/xorg-drivers/)
