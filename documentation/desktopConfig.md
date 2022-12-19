@@ -44,6 +44,11 @@ paru -S nerd-fonts-complete
 > This going to install all nerd-fonts fonts
 
 
+For emojis and/or special characters, install :
+```
+sudo pacman -S noto-fonts-emoji noto-fonts-cjk
+```
+
 # Paru
 Sometimes, we are going to need some packages from AUR arch repos, so we are going to do :
 First, create a directory where all repos going to be clone
