@@ -1,0 +1,38 @@
+# Touchpad settings
+id_touchPad=`xinput list | grep "Touchpad" | grep -oP "id=\d{1,3}" | awk -F "=" '{print $2}'`
+
+xinput --set-prop $id_touchPad "libinput Natural Scrolling Enabled" 1 &
+xinput --set-prop $id_touchPad "libinput Tapping Enabled" 1 &
+
+# Screens
+hdmi=`xrandr | grep ' connected' | grep 'HDMI' | awk '{print $1}'`
+
+if [ "$hdmi" = "HDMI1" ]; then
+    xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --mode 1920x1080 --pos 1920x0 --rotate normal --output VIRTUAL1 --off &
+else
+    xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI1 --off &
+fi
+
+# Composer
+picom &
+
+# Network
+nm-applet &
+
+#keyboard layout
+setxkbmap fr &
+
+#discord
+discord &
+
+#wallpaper
+feh --bg-scale ~/Images/Wallpapers/arch-fond03.jpg &
+
+#battery status
+cbatticon &
+
+#usb
+udiskie -t &
+
+#audio
+volumeicon &
