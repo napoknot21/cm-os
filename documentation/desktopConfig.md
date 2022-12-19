@@ -110,3 +110,45 @@ onfiguration {
 }
 @theme "/usr/share/rofi/themes/DarkBlue.rasi"
 ```
+
+# GTK themes
+Config the ```~/.gtkrc2.0``` and ```~/.config/gtk-3.0/settings.ini``` files for having icons/themes
+
+For the ```~/.gtkrc2.0```, write 
+```
+gtk-theme-name="Material-Black-Blueberry"
+gtk-icon-theme-name="Material-Black-Blueberry-Suru"
+gtk-font-name="Noto Sans 11"
+gtk-cursor-theme-name="Breeze_Default"
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=0
+gtk-menu-images=0
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintslight"
+gtk-xft-rgba="rgb"
+```
+
+And for the ```~/.config/gtk-3.0/settings.ini``` , write
+```
+[Settings]
+gtk-theme-name=Material-Black-Blueberry
+gtk-icon-theme-name=Material-Black-Blueberry-Suru
+gtk-font-name=Noto Sans 11
+gtk-cursor-theme-name=Breeze_Default
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-menu-images=0
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hinstyle=hintslight
+gtk-xft-rgba=rgb
+```
+> Note: this settings are config with ```Material-Black-Blueberry``` themes !
