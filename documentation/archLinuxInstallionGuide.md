@@ -156,45 +156,45 @@ cryptsetup -y -v [or --user-random] luksFormat /dev/ROOT_HOME_PARTITION
 
 
 Then, we have to open the encrypted partition
-> I named "cryptdisk" but you can name it as you want
+> I named "cryptArch" but you can name it as you want
 ```
-cryptsetup luksOpen [or just open] /dev/ROOT_HOME_PARTITION cryptdisk
+cryptsetup luksOpen [or just open] /dev/ROOT_HOME_PARTITION cryptArch
 ```
 
 We create the physic volume
 ```
-pvcreate /dev/mapper/cryptdisk
+pvcreate /dev/mapper/cryptArch
 ```
 
 Now, we're going to create a group volume for encrypt the root and the home partition
-> Again, I named diskGroup , but you can name it as you want
+> Again, I named archGroup , but you can name it as you want
 ```
-vgcreate diskGroup /dev/mapper/cryptdisk
+vgcreate archGroup /dev/mapper/cryptArch
 ```
 
 We create the logic Volumes for root
 ```
-lvcreate -L 60G diskGroup -n root
+lvcreate -L 60G archGroup -n root
 ```
 And for home
 ```
-lvcreate -l 100%FREE diskGroup -n home
+lvcreate -l 100%FREE archGroup -n home
 ```
 
 Once done, we have to finish to format the partitions
 ```
-mkfs.ext4 /dev/diskGroup/root
+mkfs.ext4 /dev/archGroup/root
 ```
 ```
-mkfs.ext4 /dev/diskGroup/home
+mkfs.ext4 /dev/archGroup/home
 ```
 
 We finally mount all partitions !
 ```
-mount /dev/diskGroup/root /mnt
+mount /dev/archGroup/root /mnt
 ```
 ```
-mkdir /mnt/home && mount /dev/diskGroup/home /mnt/home
+mkdir /mnt/home && mount /dev/archGroup/home /mnt/home
 ```
 ```
 mkdir /mnt/boot && mount /dev/EFI_PARTITION /mnt/boot
@@ -312,7 +312,7 @@ we modify the grub default file ``` /etc/default/grub ```
 >
 > we modifiy ```GRUB_CMDLINE_LINUX```  By
 ```
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=[THE UUID ROOT_HOME_PARTITION]:cryptdisk root=/dev/diskGroup/root"
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=[THE UUID ROOT_HOME_PARTITION]:cryptArch root=/dev/archGroup/root"
 ```
 
 we config grub
@@ -334,14 +334,14 @@ systemctl enable cups
 
 we create a local user
 ```
-useradd -m charly
+useradd -m napoknot21
 ```
 ```
-passwd charly 
+passwd napoknot21
 ```
 > we enter 2 times de password for the user
 ```
-usermod -aG wheel,storage,video,audio,optical charly
+usermod -aG wheel,storage,video,audio,optical napoknot21
 ```
 
 we install sudo
