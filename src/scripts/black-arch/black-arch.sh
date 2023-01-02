@@ -27,7 +27,7 @@ if [[ $rep = [Yy] ]]; then
 	read rep1
 
 	if [[ $rep1 == [yY] ]]; then
-		sudo pacman -S metasploit ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap
+		sudo pacman -S metasploit ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists
 		echo "[*] Basic black arch tools successfully installed !"
 		sleep 1
 
@@ -35,7 +35,7 @@ if [[ $rep = [Yy] ]]; then
 		read rep2
 
 		if [[ $rep2 == [yY] ]]; then
-			sudo pacman -S wpscan wafw00f sploitctl rsync redis openvpn nikto hash-identifier fcrackzip burpsuite aircrack-ng
+			sudo pacman -S wpscan wafw00f sploitctl rsync redis openvpn nikto hash-identifier fcrackzip burpsuite aircrack-ng perl-image-exiftool venom
 			#paru -S mkpasswd [OBSOLET PCKG]
 
 			echo "[*] Advanced black arch tools installed successfully !"
