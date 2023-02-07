@@ -1,6 +1,8 @@
 # cm-os
 Custom settings for Arch-linux including a desktop environment (window manager) and stable version.
 
+**Note: The script is not finished yet. Instead, the guides and docs are up to day !**
+
 ## Pre requisites
 The CM-OS just need to a basic partition disk in order to complete the base installation of arch linux. For that, check in the [documentation](./documentation) our cutomised arch installation [guide](./documentation/archLinuxInstallationGuide.md).
 
