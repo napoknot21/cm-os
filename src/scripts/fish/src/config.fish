@@ -15,6 +15,18 @@ alias fgrep "fgrep --color=auto"
 set VISUAL '/usr/bin/nvim'
 set EDITOR '/usr/bin/nvim'
 
+# Hack The Box aliases
+alias vpn-sp "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/starting_point_Napoknot21.ovpn" 
+alias vpn-labs "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/lab_Napoknot21.ovpn"
+alias vpn-fortress "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/fortresses_Napoknot21.ovpn"
+alias vpn-arena "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/release_arena_Napoknot21.ovpn"
+
+# script aliases
+alias extractPorts "/home/napoknot21/Desktop/hacking/utils-tools/extractPorts.sh"
+alias hostDiscovery "/home/napoknot21/Desktop/hacking/utils-tools/hostDiscovery.sh"
+alias osDiscovery "/home/napoknot21/Desktop/hacking/utils-tools/osDiscovery.sh"
+alias scanPorts "/home/napoknot21/Desktop/hacking/utils-tools/scanPorts.sh"
+
 #set fish_greeting
 
 starship init fish | source
