@@ -92,5 +92,9 @@ keys = [
     Key([mod], "u", lazy.spawn("setxkbmap us"), desc="change keyboard layout to english - us"),
     Key([mod], "e", lazy.spawn("setxkbmap es"), desc="change keyboard layout to spanish - es"),
     Key([mod], "d", lazy.spawn("setxkbmap de"), desc="change keyboard layout to german - de"),
-    Key([mod], "n", lazy.spawn("setxkbmap nl"), desc="change keyboard layout to dutch - nl")
+    Key([mod], "n", lazy.spawn("setxkbmap nl"), desc="change keyboard layout to dutch - nl"),
+
+    #Screen locker
+    Key([mod], "c", lazy.spawn("slock"), desc="Lock the minimalist locker session the current session"),
+    Key([mod, "shift"], "c", lazy.spawn("betterlockscreen -l dim"), desc="Lock the betterlockscreen locker with the current image")
 ]

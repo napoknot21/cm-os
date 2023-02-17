@@ -25,6 +25,9 @@ fi
 
 mv ./src/* $DIR_QTILE
 
+# installation used packages
+pacman -S slock brightnessctl redshift scrot
+paru -S betterlockscreen brave-bin
 
 sleep 3
 echo -e "[*] Config successfully copied !\n"

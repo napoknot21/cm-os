@@ -21,6 +21,9 @@ alias vpn-labs "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/lab_Napokn
 alias vpn-fortress "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/fortresses_Napoknot21.ovpn"
 alias vpn-arena "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/release_arena_Napoknot21.ovpn"
 
+# Creation of work dirs
+alias mktree "mkdir {nmap,content,exploits}"
+
 # script aliases
 alias extractPorts "/home/napoknot21/Desktop/hacking/utils-tools/extractPorts.sh"
 alias hostDiscovery "/home/napoknot21/Desktop/hacking/utils-tools/hostDiscovery.sh"

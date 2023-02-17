@@ -19,27 +19,33 @@ from settings.mouse import mouse
 
 layout_conf = {
     'border_focus': '#F07178',
-    'border_width': 1,
-    'margin': 4
+    'border_width': 2,
+    'margin': 4,
+    'insert_position': 1
 }
 
 layouts = [
     layout.Columns(
-        #border_focus_stack=["#d75f5f", "#8f3d3d"], 
-        border_width=4
+        #border_focus_stack=["#d75f5f", "#8f3d3d"],
+        #border_on_single=True,
+        margin=2,
+        border_width=2,
+        #insert_position=1
     ),
-    layout.Max(),
+    layout.Max(
+        margin=2
+    ),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(
-        border_width=3
-    ),
+    # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     layout.Tile(
-        border_width=3
+        border_width=2,
+        margin=2,
+        border_on_single=False
     ),
     # layout.TreeTab(),
     # layout.VerticalTile(),
@@ -155,7 +161,7 @@ screens = [
                 #widget.QuickExit(),
             ],
             25,
-            opacity=0.90
+            opacity=0.80
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -249,7 +255,7 @@ screens = [
                 #widget.QuickExit(),
             ],
             24,
-            opacity=0.90
+            opacity=0.80
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),

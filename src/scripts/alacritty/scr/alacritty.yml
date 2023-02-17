@@ -7,8 +7,22 @@ window :
 colors :
   primary:
     background: '#000000'
+    #foreground: '0xbbc5ff'
+    #foreground: '#abb2bf'
 
-#font:
+    #bright_foreground: '#e6efff'
+
+  #normal:
+    #black:   '#1e2127'
+    #red:     '#FF0000'
+    #green:   '#98c379'
+    #yellow:  '#d19a66'
+    #blue:    '#61afef'
+    #magenta: '#c678dd'
+    #cyan:    '#56b6c2'
+    #white:   '#e6efff'
+
+font:
   #bold:
     #family: UbuntuMono Nerd Font
     #family: mononoki Nerd Font
@@ -43,4 +57,4 @@ colors :
     #family: Hack NF
     #family: SpaceMono NF
     #style: Regular
-  #size: 14
+  size: 7
