@@ -16,19 +16,20 @@ set VISUAL '/usr/bin/nvim'
 set EDITOR '/usr/bin/nvim'
 
 # Hack The Box aliases
-alias vpn-sp "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/starting_point_Napoknot21.ovpn" 
-alias vpn-labs "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/lab_Napoknot21.ovpn"
-alias vpn-fortress "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/fortresses_Napoknot21.ovpn"
-alias vpn-arena "sudo openvpn /home/napoknot21/Desktop/hacking/HTB/vpn/release_arena_Napoknot21.ovpn"
+alias vpn-sp "sudo openvpn $(locate starting_point_Napoknot21.ovpn)" 
+alias vpn-labs "sudo openvpn $(locate lab_Napoknot21.ovpn)"
+alias vpn-fortress "sudo openvpn $(locate fortresses_Napoknot21.ovpn)"
+alias vpn-arena "sudo openvpn $(locate release_arena_Napoknot21.ovpn)"
+alias vpn-comp "sudo openvpn $(locate competitive_Napoknot21.ovpn)"
 
-# Creation of work dirs
+# creation of dirs
 alias mktree "mkdir {nmap,content,exploits}"
 
 # script aliases
-alias extractPorts "/home/napoknot21/Desktop/hacking/utils-tools/extractPorts.sh"
-alias hostDiscovery "/home/napoknot21/Desktop/hacking/utils-tools/hostDiscovery.sh"
-alias osDiscovery "/home/napoknot21/Desktop/hacking/utils-tools/osDiscovery.sh"
-alias scanPorts "/home/napoknot21/Desktop/hacking/utils-tools/scanPorts.sh"
+alias extractPorts $(locate extractPorts.sh)
+alias hostDiscovery $(locate hostDiscovery.sh)
+alias osDiscovery $(locate osDiscovery.sh)
+alias scanPorts $(locate scanPorts.sh)
 
 #set fish_greeting
 
