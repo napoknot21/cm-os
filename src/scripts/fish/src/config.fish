@@ -26,10 +26,10 @@ alias vpn-comp "sudo openvpn $(locate competitive_Napoknot21.ovpn)"
 alias mktree "mkdir {nmap,content,exploits}"
 
 # script aliases
-alias extractPorts $(locate extractPorts.sh)
-alias hostDiscovery $(locate hostDiscovery.sh)
-alias osDiscovery $(locate osDiscovery.sh)
-alias scanPorts $(locate scanPorts.sh)
+alias extractPorts "$(locate extractPorts.sh)"
+alias hostDiscovery "$(locate hostDiscovery.sh)"
+alias osDiscovery "$(locate osDiscovery.sh)"
+alias scanPorts "$(locate scanPorts.sh)"
 
 #set fish_greeting
 
