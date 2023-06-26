@@ -2,8 +2,16 @@
 
 # Installer helper for the AUR repos
 
-cd ~/.repos
+if [[ -f $HOME/.repos ]]; then
+    cd $HOME/.repos
+else
+    mkdir $HOME/.repos && cd $HOME/.repos
+fi
+
 git clone https://aur.archlinux.org/paru.git
-cd paru-bin
-echo -n "Installing the PARU helper"
+
+cd paru
+
+echo -n "[*] Installing the PARU helper..."
+
 makepkg -si
