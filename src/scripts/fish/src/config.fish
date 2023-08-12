@@ -3,14 +3,29 @@ if status is-interactive
 end
 
 # Aliases (general)
-alias ls "lsd --color=always --group-directories-first"
-alias ll "lsd --color=always --group-directories-first"
-alias cat "bat"
+#alias ls "lsd --color=always --group-directories-first"
+#alias ll "lsd --color=always --group-directories-first"
+#alias cat "bat"
 alias man "batman"
 alias tree "exa -T --icons"
-alias grep "grep --color=auto"
-alias egrep "egrep --color=auto"
-alias fgrep "fgrep --color=auto" 
+#alias grep "grep --color=auto"
+#alias egrep "egrep --color=auto"
+#alias fgrep "fgrep --color=auto" 
+
+# Custom Aliases
+# -----------------------------------------------
+# bat
+alias cat='bat'
+alias catn='bat --style=plain'
+alias catnp='bat --style=plain --paging=never'
+ 
+# ls
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -lha --group-dirs=first'
+alias ls='lsd --group-dirs=first'
+
 
 # For NeoVim default editor
 set VISUAL '/usr/bin/nvim'
