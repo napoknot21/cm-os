@@ -1,22 +1,26 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
+# Copyright (c) 2023 napoknot21
 
+from libqtile import hook
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Match, Screen
 from libqtile.lazy import lazy
 
 from settings.keys import mod, keys
 from settings.groups import groups
+from settings.path import qtile_path
+from settings.mouse import mouse
 #from settings.widgets import widget_defaults, extension_defaults
 
-# Drag floating layouts.
-from settings.mouse import mouse
+from os import path
+import subprocess
 
+
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.call([path.join(qtile_path, 'autostart.sh')])
+
+
+# Drag floating layouts.
 layout_conf = {
     'border_focus': '#F07178',
     'border_width': 2,
@@ -35,7 +39,6 @@ layouts = [
     layout.Max(
         margin=2
     ),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),

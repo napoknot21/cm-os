@@ -96,5 +96,5 @@ keys = [
 
     #Screen locker
     Key([mod], "c", lazy.spawn("slock"), desc="Lock the minimalist locker session the current session"),
-    Key([mod, "shift"], "c", lazy.spawn("betterlockscreen -l dim"), desc="Lock the betterlockscreen locker with the current image")
+    Key([mod, "shift"], "c", lazy.spawn("i3lock-fancy"), desc="Lock with the i3lock locker")
 ]

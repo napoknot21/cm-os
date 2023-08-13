@@ -6,7 +6,7 @@ from .keys import mod, keys
 
 #icons from https://www.nerdfonts.com/cheat-sheet
 
-groups = [Group(i)for i in ["ﭮ", "  ", "  ", "", "  ", "", "  ", "", "  "]]
+groups = [Group(i)for i in [" ﭮ ", "   ", "   ", "  ", "  ", "  ", "  ", "  ", "   "]]
 
 for i, group in enumerate(groups) :
     actual_key = str(i+1)
