@@ -61,7 +61,7 @@ sudo pacman -S vulkan-radeon vulkan-icd-loader
 
 Install the packages
 ```
-sudo pacman -S nvidia-dkms nvidia-utils nvidia-settings
+sudo pacman -S nvidia nvidia-utils nvidia-settings
 ```
 
 > Warning: xf86-input-synaptics is no longer actively updated

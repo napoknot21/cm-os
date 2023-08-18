@@ -32,22 +32,19 @@ sudo pacman -S alsa-firmware alsa-plugins
 > ```
 
 
-Install fonts (yes, bc the default ones are not really cutes)
+# Fonts
+Let's Install many fonts (yes, bc the default ones are not really cutes)
 ```
-sudo pacman -S ttf-dejavu ttf-liberation noto-fonts
+sudo pacman -S ttf-dejavu ttf-liberation noto-fonts awesome-terminal-fonts
 ```
-
-If you want other fonts, you can find them [here](nerdfonts.com) or install
-```
-paru -S nerd-fonts-complete
-```
-> This going to install all nerd-fonts fonts
-
 
 For emojis and/or special characters, install :
 ```
 sudo pacman -S noto-fonts-emoji noto-fonts-cjk
 ```
+
+If you want other fonts, you can find them [here](https://nerdfonts.com/) !
+
 
 # Paru
 Sometimes, we are going to need some packages from AUR arch repos, so we are going to do :
@@ -61,7 +58,7 @@ git clone https://aur.archlinux.org/paru.git
 ```
 Then, we enter to the directory
 ```
-cd paru-bin
+cd paru
 ```
 Once there, build and install Paru AUR helper by
 ```
@@ -96,12 +93,12 @@ sudo pacman -S papirus-icon-theme
 
 Whe chose a theme
 ```
-rofi-select-theme
+rofi-theme-selector
 ```
 
 We modify the ```~/.config/rofi/config.rasi``` as followed
 ```
-onfiguration {
+configuration {
     modi: "window,drun,ssh,combi";
     ssh-client : "ssh";
     icon-theme : "Papirus";
@@ -151,4 +148,4 @@ gtk-xft-hinting=1
 gtk-xft-hinstyle=hintslight
 gtk-xft-rgba=rgb
 ```
-> Note: this settings are config with ```Material-Black-Blueberry``` themes !
+> Note: this settings are config with ```Material-Black-Blueberry``` theme !
