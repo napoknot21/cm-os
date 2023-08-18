@@ -32,6 +32,9 @@ pacman -S ocaml-base
 ## haskell
 sudo pacman -S ghc cabal-install
 
+## DB (sql and psql)
+sudo pacman -S postgresql mysql
+
 ## ohters
 pacman -S rust go ruby nodejs npm
 
