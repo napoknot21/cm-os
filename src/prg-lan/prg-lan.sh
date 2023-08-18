@@ -33,5 +33,5 @@ pacman -S ocaml-base
 sudo pacman -S ghc cabal-install
 
 ## ohters
-pacman -S rust go ruby 
+pacman -S rust go ruby nodejs npm
 
