@@ -12,7 +12,7 @@
 ## Java
 pacman -S java-runtime-common java-environment-common
 pacman -S jdk-openjdk openjdk-doc
-pacamn -S jre-openjdk jre-openjdk-headless
+pacman -S jre-openjdk jre-openjdk-headless
 pacman -S java-openjfx java-openjfx-doc
 
 ## Python
