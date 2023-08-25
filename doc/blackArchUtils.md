@@ -103,12 +103,18 @@ Interactive Windows Shell for connecting to remote Windows servers
 sudo pacman -S evil-winrm
 ```
 
+### burpsuite
+An integrated platform (proxy) for attacking web applications
+```
+sudo pacman -S burpsuite
+```
+
 ## Some interesting packages and websites
 Here we have some interesting packages and websites for pentesting and hacking.
 
 One Liner command for the packages
 ```
-sudo pacman -S metasploit ettercap responder telnet amidi tcpdump netcat gobuster dirbuster burpsuite crackmapexec sqlmapper
+sudo pacman -S metasploit ettercap responder tcpdump netcat gobuster dirbuster crackmapexec sqlmapp
 ```
 
 Table of sites and github repos:
@@ -120,4 +126,4 @@ Table of sites and github repos:
 5. https://github.com/veracode-research/rogue-jndi (rogue-jndi tool)
 6. https://github.com/danielmiessler/SecLists (dictionaries for pentesting)
 
-So, now we can install any black arch util !
+So, now we are ready !
