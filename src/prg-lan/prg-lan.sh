@@ -20,6 +20,9 @@ pacman -S python
 pacman -S tk python-pyqt5
 pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
 pacman -S python-tensorflow python-pytorch
+# Addional pcks
+pacman -S ipython python-regex python-cv2 python-opencv
+paru -S python-gym
 
 ## C/C++
 pacman -S gcc
@@ -30,10 +33,10 @@ pacman -S ocaml dune opam
 pacman -S ocaml-base
 
 ## haskell
-sudo pacman -S ghc cabal-install
+pacman -S ghc cabal-install
 
 ## DB (sql and psql)
-sudo pacman -S postgresql mysql
+pacman -S postgresql mysql
 
 ## ohters
 pacman -S rust go ruby nodejs npm
