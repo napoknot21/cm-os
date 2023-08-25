@@ -59,10 +59,34 @@ sudo pacman -S vulkan-radeon vulkan-icd-loader
 
 ## Nvidia
 
-Install the packages
+First of all you need to identify your graphic card ! check this [list](https://nouveau.freedesktop.org/CodeNames.html)
+
+Indeed, you will have to install a `nvidia-x` package depending of your GPU and your kernel. For more information, check the [wiki](https://wiki.archlinux.org/title/NVIDIA)
+
+We suppose we are on a normal linux kernel. Install the packages
 ```
 sudo pacman -S nvidia nvidia-utils nvidia-settings
 ```
+
+Addionally, you can install the following packages as optional dependencies
+```
+sudo pacman -S opencl-nvidia opencl-headers
+```
+
+To support 32-bit applications, also download the related lib32 package from the `multilib` repository.
+```
+ sudo pacman -S lib32-nvidia-utils
+```
+
+We need to remove `dkm` module from ```/etc/mkinitcpio.conf```'s hooks section !
+
+Now have to blacklist `nouveau` driver, let's add this on the ```/etc/modprobe.d/nouveau_blacklist.conf```
+```
+blacklist nouveau
+```
+
+Then reboot !
+
 
 > Warning: xf86-input-synaptics is no longer actively updated
 
