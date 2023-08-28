@@ -2,14 +2,16 @@
 
 This guide is a summary and customization of the installation guide of [archlinux.org](archlinux.org) so if you want to check the offical guide click [here](https://wiki.archlinux.org/title/installation_guide)
 
-## Prerequisites
-First of all, you need to download the lastest version of ISO arch linux file in the official website.
+## General Prerequisites
+First of all, it's good practice to back up all your files. Indeed, if something goes wrong, you could permanently delete them, especially since we are going to modify the hard disk. So, be careful!
+Next, you need to download the latest version of the Arch Linux ISO file from the official website. If you don't know how to do this, you can find instructions on internet or any site :)
 
+### Dual-Boot Prerequisites
+One common issue during dual-booting arises when installing GRUB (you'll see more about this later). To avoid this, ensure that the size of your boot/EFI partition is greater than 250 MB; ideally, 1 GB is better, although the smaller size should suffice. For Windows users, the size of your `SYSTEM` partition is typically 100 GB. You'll need to increase this. If you're unsure how to go about it, you can refer to this [tutorial](https://youtu.be/HDa4hfGX5xE?feature=shared).
 
-**Before to start, I advice you to make a back up of all your windows data**: It's always important to do it before make any change in the system !
 
 ### Creating a separate partition/Volume for Arch Linux
-> If you are not in a Dual Boot case, skip this part and go directly to **Installation** section
+> If you are not in a **Dual Boot** case, skip this part and go directly to **Installation** section
 
 
 
@@ -130,7 +132,7 @@ cfdisk
 > (partition of 100G)
 > -> one EFI partition (1G)  [if you are not on dual boot]
 >-> one Root&Home partition (95G)
->-> swap partition (4G)
+>-> swap partition (4G) [If you have more than 8Go ram, 2Go ]
 >```
 
 formating partition
