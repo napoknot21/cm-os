@@ -1,42 +1,144 @@
 # Arch Linux installation guide 
 
-This guide is a summary and customization of the installation guide of [archlinux.org](archlinux.org) so if you want to check the offical guide click [here](https://wiki.archlinux.org/title/installation_guide)
+This guide is a summary and customization of the installation guide from [archlinux.org](https://archlinux.org). If you want to consult the official guide, click [here](https://wiki.archlinux.org/title/installation_guide).
+ 
 
-## General Prerequisites
-First of all, it's good practice to back up all your files. Indeed, if something goes wrong, you could permanently delete them, especially since we are going to modify the hard disk. So, be careful!
-Next, you need to download the latest version of the Arch Linux ISO file from the official website. If you don't know how to do this, you can find instructions on internet or any site :)
+## First steps
+
+### Prerequisites
+
+This section is only applicable if you're installing Arch Linux on physical hardware.
+
+1. USB drive
+2. Backup of your files
+
+> Notes
+> 1. Ensure the USB drive you are using to flash the Arch ISO has at least 8GB of space. 
+> 2. It's good practice to backup all your files. If something goes wrong during installation, you could permanently lose them. Proceed with caution!
 
 ### Dual-Boot Prerequisites
-One common issue during dual-booting arises when installing GRUB (you'll see more about this later). To avoid this, ensure that the size of your boot/EFI partition is greater than 250 MB; ideally, 1 GB is better, although the smaller size should suffice. For Windows users, the size of your `SYSTEM` partition is typically 100 GB. You'll need to increase this. If you're unsure how to go about it, you can refer to this [tutorial](https://youtu.be/HDa4hfGX5xE?feature=shared).
 
+A common issue during dual-boot installations is related to the GRUB bootloader. To avoid this, make sure that your boot/EFI partition is at least 250MB (Ideally, make it 1GB).
 
-### Creating a separate partition/Volume for Arch Linux
-> If you are not in a **Dual Boot** case, skip this part and go directly to **Installation** section
-
+For Windows users, your `EFI System Partition` partition is typically 100MB, so you will need to increase this. If you're not sure how to do it, refer to this [tutorial](https://youtu.be/HDa4hfGX5xE?feature=shared).
 
 
 ### Donwload the ISO file
-Go to [archlinux.org](https://www.archlinux.org) -> Donwload -> *search & select a server* (make sure to select a server near to your zone time or country) -> download the ```archlinux-XXXX.XX.XX-x86_64.iso``` file (X means the date of the lastest version)
 
+Download the latest version of the Arch Linux ISO file from the official website. To do so, follow these steps:
 
-Now, we need to flash the ISO file in a USB driver, so make sure to have one that has at least 8Go
+1. Go to [archlinux.org](https://www.archlinux.org)
+2. Navigate to **Download**
+3. Search and select a server close to your timezone or country
+4. Download the `archlinux-XXXX.XX.XX-x86_64.iso` file
+
+> **Note:**
+> The "X"s denote the date of the latest version.
+
+Now, we need to flash the ISO file in a USB driver.
 
 
 ### Flashing the USB Driver
 
-Before to start, **make sur to amke a back up of your USB driver files**: It's necessary to format the driver in order to flasing the ISO file.
+>  This subsection is only applicable for installations on physical machines.
 
-Once done, format your USB device.
+Before you begin, **backup your USB drive** because you'll need to format it to flash the ISO file.
 
-We are going to use **Balena Etcher** for flashing the ISO file in our USB Driver.
-if you are on windows, go to the [official site](https://www.balena.io/etcher/) and download & install the program.
+On Windows, follow these commands to format your USB drive. 
 
-After that click on *Flash from file* (Select the ISO arch linux file) -> *select a target* (select your USB Driver) -> Flash !
+Open a `cmd` or `PowerShell` window as an `administrator`
+```
+C:\WINDOWS\system32>
+``` 
 
+Going to use the ```diskpart``` program !
+```
+C:\WINDOWS\system32> diskpart
+```
+
+Once you've entered this command, you should see a new *interface* that looks like this:
+```
+Microsoft DiskPart version XX.X.XXXXX 
+Copyright: (c) 1999-2023 Microsoft Corporation.
+On-computer: YYYY
+
+DISKPART> 
+```
+> The "X"s are numbers so taht means a version and "YYYY", a name
+
+Start by listing all available hard disks:
+```
+DISKPART> list disk
+```
+
+This command will display all the hard disks depending on your hardware configuration. For example:
+```
+  Disk ###    Status       Size       Free        Dyn     GPT
+  --------    ---------    -------    -------     ---     ---
+  Disk 0      online        476 GB     101 MB              *
+  Disk 1      online       7800 MB    7784 MB
+```
+> In this example, my USB drive (Disk 1) is clearly the one with a size of 7784MB (~8GB), and the other (Disk 0) is my SSD.
+
+Now, identify your USB drive (e.g., `Disk 1`) in order to select it
+```
+DISKPART> select disk 1
+```
+> Again, your disk number will depend of your hardware config, so be careful !
+
+Make sure you've selected the correct disk to avoid data loss! so run the ```list disk``` command
+```
+  Disk ###    Status       Size       Free        Dyn     GPT
+  --------    ---------    -------    -------     ---     ---
+  Disk 0      online        476 GB     101 MB              *
+* Disk 1      online       7800 MB    7784 MB
+```
+> Notice that an asterisk (*) appears before `Disk 1`, indicating that it is the selected disk !
+
+Once the correct disk is selected, let's clean the device
+```
+DISKPART> clean
+```
+
+Next, create a new partition for your USB drive:
+```
+DISKPART> create partition primary
+```
+
+Finally, let's format the device !
+```
+DISKPART> format fs=fat32 quick
+```
+
+You should see a message saying the volume was successfully formatted. Exit the CMD.
+
+Now, to flash the ISO file to your USB drive, use **Balena Etcher**. Download and install it from the [official site](https://www.balena.io/etcher/), then follow the steps:
+
+1. **Flash from file:** Select the Arch Linux ISO file
+2. **Select a target:** Choose your USB drive
+3. **Flash!**
+
+
+### Creating partition for Arch Linux
+
+Skip this section if you are not setting up a *dual-boot* system and go directly to **Installation** section.
+> TODO !
 
 ## Installation
 
-### Basic configuration
+### BIOS
+
+Connect your USB drive to your laptop or PC, and then shut it down.
+
+Upon restarting, make sure to access your `BIOS` interface. The method for accessing BIOS will depend on your device's brand. For more details, see [here](https://oliz.io/blog/2021/bios-keys.html).
+
+Once inside the BIOS, disable `Secure Boot mode`. The exact method for doing this will vary as BIOS interfaces differ between manufacturers. Generally, you can find this option in the `Security` or `Boot` sections.
+
+Additionally, change the boot order to place the USB device in the first position.
+
+Once these steps are completed, you're officially ready to begin the installation!
+
+### Layout config
 
 We start changing the keyboard layout (language) if yours is not english, for exemple:
 > to check the list of all keyboard layouts and find out yours, do ``` localectl list-keymaps```
@@ -146,6 +248,8 @@ mkswap /dev/SWAP_PARTITION
 swapon /dev/SWAP_PARTITION
 ```
 
+### Encryption
+
 Now we are going to encrypt the disk in order to protect all (personal) files and data
 ```
 mkfs.ext4 /dev/ROOT_HOME_PARTITION
@@ -182,6 +286,8 @@ And for home
 ```
 lvcreate -l 100%FREE archGroup -n home
 ```
+
+### Mounting the partition
 
 Once done, we have to finish to format the partitions
 ```
@@ -220,6 +326,8 @@ we verify it's ok
 ```
 cat /mnt/etc/fstab
 ```
+
+### Arch-chroot !
 
 changing to root
 ```
@@ -375,4 +483,4 @@ umount -a
 Then turn off your machine by ```shutdown now``` and take of the usb-driver :
 
 
-**Made and written by Charly Martin Avila (Napoknot21)**
+**Author**: Charly Martin Avila (Napoknot21) 2023
