@@ -26,9 +26,9 @@ check_internet()
 
 
 #Script
-if [[ $START_ANSWER = [Yy] ]]; then
+if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     
-    #handler
+    #handler()
     check_internet
     
     #Variables for the script
@@ -80,7 +80,7 @@ if [[ $START_ANSWER = [Yy] ]]; then
 
     sudo pacman -S xorg xorg-server xorg-xinit
 
-    echo -e "\n[*] X Server is installed successfully ! continuing...\n"
+    echo -e "\n[+] X Server is installed successfully ! continuing...\n"
 
 
     sleep 1
@@ -119,12 +119,13 @@ if [[ $START_ANSWER = [Yy] ]]; then
         if [[ $index -ge 1 && $index -le ${#desktops[@]} ]]; then
         
             package=${desktops[$((index-1))]}
-            echo "\n[*] Installing $package..."
-            sudo pacman -S $package
+            echo -e "\n[*] Installing $package..."
+            sudo pacman -S $(echo "$package" | tr 'A-Z' 'a-z')
+            echo -e "\n[+] $package installed successfully !\n"
         
         else
 
-            echo "Invalid option: $index"
+            echo -e "\n[-]Invalid option: $index\n"
         
         fi
     
