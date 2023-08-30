@@ -30,14 +30,17 @@ if [[ $START_ANSWER = [Yy] ]]; then
     
     #handler
     check_internet
-
-    echo "[+] Starting installation...\n"
-    sleep 1
-
+    
     #Variables for the script
     CMOS_PATH=$PWD
     CMOS_DIR_EXTRAS=$CMOS_PATH/extras/
     CMOS_DIR_SCRIPTS=$CMOS_PATH/src/scripts/
+
+    echo -e "\n[+] Starting installation...\n"
+    
+    
+    sleep 1
+
 
     # REQUIRED PACKAGES AND CONFIG
     
@@ -50,9 +53,9 @@ if [[ $START_ANSWER = [Yy] ]]; then
         echo -e "\n[!] .gitconfig does not exist. Creating one now..."
 
         # Ask for the user's name and email
-        echo -e "\n[?] Enter your name: " 
+        echo -en "\n[?] Enter your name: " 
         read name_git
-        echo -e "[?] Enter your email: "
+        echo -en "[?] Enter your email: "
         read email_git
 
         # Create the .gitconfig file and add name and email
@@ -89,15 +92,15 @@ if [[ $START_ANSWER = [Yy] ]]; then
 
     echo -e "\n[*] Dektop and window managers avaliables !\n"
     
-    for i in "${!options[@]}"; do
+    for i in "${!desktops[@]}"; do
     
         echo -e "\n[]"
-        echo "$((i+1))) ${options[i]}"
+        echo "$((i+1))) ${desktops[i]}"
         echo -e "\n"
 
     done
 
-    echo -e "\n[?] Enter a selection (default=all): " 
+    echo -en "\n[?] Enter a selection (default=all): " 
     read selection
 
     # If nothing is entered, default to installing all packages
