@@ -88,25 +88,24 @@ if [[ $START_ANSWER = [Yy] ]]; then
 
     ### DEKSTOPS installation
 
-    dektops=("Qtile" "Bspwm" "Gnome" "KDE" "OpenBox" "Xmonad")
+    desktops=("Qtile" "Bspwm" "Gnome" "KDE" "OpenBox" "Xmonad")
 
     echo -e "\n[*] Dektop and window managers avaliables !\n"
     
     for i in "${!desktops[@]}"; do
     
-        echo -e "\n[]"
-        echo "$((i+1))) ${desktops[i]}"
-        echo -e "\n"
+        echo -n "$((i+1))) ${desktops[i]}"
+        echo -en "\t"
 
     done
 
-    echo -en "\n[?] Enter a selection (default=all): " 
+    echo -en "\n\n[?] Enter a selection (default=all): " 
     read selection
 
     # If nothing is entered, default to installing all packages
     if [ -z "$selection" ]; then
 
-        selection=$(seq -s, 1 ${#options[@]})
+        selection=$(seq -s, 1 ${#desktops[@]})
     
     fi
 
@@ -117,9 +116,9 @@ if [[ $START_ANSWER = [Yy] ]]; then
     for index in "${selected_indices[@]}"; do
         
         # Validate input
-        if [[ $index -ge 1 && $index -le ${#options[@]} ]]; then
+        if [[ $index -ge 1 && $index -le ${#desktops[@]} ]]; then
         
-            package=${options[$((index-1))]}
+            package=${desktops[$((index-1))]}
             echo "\n[*] Installing $package..."
             sudo pacman -S $package
         
