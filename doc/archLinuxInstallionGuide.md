@@ -399,7 +399,7 @@ pacman -S lvm2
 Then, let's modify the HOOKS in ```/etc/mkinitcpio.conf```:
 > We're supposed to have this :
 ```
-hooks = (base udev autodetect modconf block filesystems keyboard encrypt lvm2 fsck)
+hooks = (base udev autodetect modconf kms keyboard keymap consolefont block filesystems encrypt lvm2 fsck)
  ```
 
 we relance la config
