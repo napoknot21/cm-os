@@ -1,25 +1,34 @@
 #!/bin/sh
 
-echo -n "\n[?] Do you want to start the installation and set up? [y/n] : "
-read -p START_ANSWER
+echo -en "\n[?] Do you want to start the installation and set up? [y/n] : "
+read START_ANSWER
+
+handler()
+{
+    kill -s SIGINT $PID
+}
 
 
 check_internet()
 {
-  tool='curl'
-  tool_opts='-s --connect-timeout 8'
+    tool='curl'
+    tool_opts='-s --connect-timeout 8'
 
-  if ! $tool $tool_opts https://archlinux.org/ > /dev/null 2>&1; then
-    err "You don't have an Internet connection!"
-  fi
+    if ! $tool $tool_opts https://archlinux.org/ > /dev/null 2>&1; then
+    
+        echo -e "\n[-] You don't have an Internet connection !\n"
+        exit 1
+    
+    fi
 
-  return $SUCCESS
+    return $SUCCESS
 }
 
 
 #Script
 if [[ $START_ANSWER = [Yy] ]]; then
     
+    #handler
     check_internet
 
     echo "[+] Starting installation...\n"
@@ -38,17 +47,19 @@ if [[ $START_ANSWER = [Yy] ]]; then
     
     if [[ ! -f "$GITCONFIG_FILE" ]]; then
 
-        echo -e "\[!] .gitconfig does not exist. Creating one now..."
+        echo -e "\n[!] .gitconfig does not exist. Creating one now..."
 
         # Ask for the user's name and email
-        read -p "[?] Enter your name: " name_git
-        read -p "[?] Enter your email: " email_git
+        echo -e "\n[?] Enter your name: " 
+        read name_git
+        echo -e "[?] Enter your email: "
+        read email_git
 
         # Create the .gitconfig file and add name and email
         git config --global user.name "$name_git"
         git config --global user.email "$email_git"
 
-        echo -e "\N[*] .gitconfig has been created with the provided name and email."
+        echo -e "\n[*] .gitconfig has been created with the provided name and email."
 
     else
     
@@ -86,7 +97,8 @@ if [[ $START_ANSWER = [Yy] ]]; then
 
     done
 
-    read -p "[?] Enter a selection (default=all): " selection
+    echo -e "\n[?] Enter a selection (default=all): " 
+    read selection
 
     # If nothing is entered, default to installing all packages
     if [ -z "$selection" ]; then
