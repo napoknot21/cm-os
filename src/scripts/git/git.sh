@@ -35,6 +35,8 @@ if [[ ! -f "$GITCONFIG_FILE" ]]; then
 
 else
 
-    echo "\n[+] .gitconfig already exists. Continuing...\n"
+    echo -e "\n[+] .gitconfig already exists. Continuing...\n"
 
 fi
+
+# Author @napoknot21

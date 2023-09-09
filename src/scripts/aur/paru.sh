@@ -48,3 +48,5 @@ else
     exit 1
 
 fi
+
+# Author @napoknot21

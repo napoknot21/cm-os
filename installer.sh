@@ -33,14 +33,14 @@ check_internet()
 config_git() 
 {
     chmod +x $CMOS_DIR_SCRIPTS/git/git.sh
-    ./$CMOS_DIR_SCRIPTS/git/git.sh
+    $CMOS_DIR_SCRIPTS/git/git.sh
 }
 
 
 # Xorg installation function
 install_xorg() 
 {
-    echo -e "\n[*] Let's install XORG server for graphics !\n"
+    echo -e "\n[!] Let's install XORG server for graphics !\n"
     sudo pacman -S xorg xorg-server xorg-xinit xorg-twm
     
     if [ $? -ne 0 ]; then
@@ -54,6 +54,34 @@ install_xorg()
 }
 
 
+# LightDM config and installation
+install_lightdm() 
+{
+    echo -e "\n[!] LIGHTDM installation !\n"
+    sudo pacman -S lightdm lightdm-webkit2-greeter
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Error installing lightDM. Aborting...\n"
+        exit 1
+    
+    fi
+
+    sudo sed -i "s/#greeter-session=example-gtk-gnome/greeter-session=lightdm-webkit2-greeter/g" /etc/lightdm/lightdm.conf
+    # LigthDM config
+    sudo systemctl enable lightdm
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Error enabling lightDM. Aborting...\n"
+    
+    fi
+
+    echo -é "\n[-] Successfully installed lightDM !\n"
+}
+
+
+
 # __main__ script
 echo -en "\n[?] Do you want to start the installation and CM-OS set up? [y/n] : "
 read START_ANSWER
@@ -65,9 +93,11 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     echo -e "\n[+] Starting installation...\n"
     sleep 1
 
-    configure_git
+    config_git
 
     install_xorg
+
+    install_lightdm
     
     sleep 1
 
@@ -124,3 +154,5 @@ else
     exit 1
 
 fi
+
+# Author @napoknot21
