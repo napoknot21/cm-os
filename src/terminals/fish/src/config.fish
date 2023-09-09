@@ -93,25 +93,21 @@ set osDiscovery_script (locate osDiscovery.sh)
 set scanPorts_script (locate scanPorts.sh)
 
 function extractPorts
-  command $extractPorts_script
+  command $extractPorts_script $argv
 end
 
 function hostDiscovery
-  command $hostDiscovery_script
+  command $hostDiscovery_script $argv
 end
 
 function osDiscovery
-  command $osDiscovery_script
+  command $osDiscovery_script $argv
 end
 
 function scanPorts
-  command $scanPorts_script
+  command $scanPorts_script $argv
 end
 
 
 #starShip
 starship init fish | source
-
-
-# opam configuration
-source /home/napoknot21/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

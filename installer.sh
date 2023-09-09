@@ -54,6 +54,85 @@ install_xorg()
 }
 
 
+# Desktop installation
+install_desktop() 
+{
+    desktops=("Qtile" "Bspwm" "Gnome" "KDE" "OpenBox" "Xmonad")
+    
+    echo -e "\n[!] DEKSTOP and WM installation !\n"
+    
+    for i in "${!desktops[@]}"; do
+    
+        echo -n "$((i+1))) ${desktops[i]}"
+        echo -en "\t"
+    
+    done
+    
+    echo -en "\n\n[?] Enter a selection (default=all): " 
+    read selection
+    
+    if [ -z "$selection" ]; then
+    
+        selection=$(seq -s, 1 ${#desktops[@]})
+    
+    fi
+    
+    IFS=',' read -ra selected_indices <<< "$selection"
+    
+    # Install selected or all packages
+    for index in "${selected_indices[@]}"; do
+        
+        # Validate input
+        if [[ $index -ge 1 && $index -le ${#desktops[@]} ]]; then
+        
+            package=${desktops[$((index-1))]}
+            echo -e "\n[*] Installing $package...\n"
+
+            # Run respective script based on selected package
+            if [ "$package" == "Qtile" ]; then
+
+                chmod +x $CMOS_PATH/src/desktops/qtile/qtile.sh
+                $CMOS_PATH/src/desktops/qtile/qtile.sh
+            
+            elif [ "$package" == "Bspwm" ]; then
+
+                chmod +x $CMOS_PATH/src/desktops/bspwm/bspwm.sh
+                $CMOS_PATH/src/desktops/bspwm/bspwm.sh
+            
+            elif [ "$package" == "Xmonad" ]; then
+
+                chmod +x $CMOS_PATH/src/desktops/xmonad/xmonad.sh
+                $CMOS_PATH/src/desktops/xmonad/xmonad.sh
+                  
+            elif [ "$package" == "OpenBox" ]; then
+            
+                chmod +x $CMOS_PATH/src/desktops/openbox/openbox.sh
+                $CMOS_PATH/src/desktops/openbox/openbox.sh
+            
+            elif [ "$package" == "KDE" ]; then
+
+                sudo pacman -S plasma
+                
+            elif [ "$package" == "Gnome" ]; then
+            
+                sudo pacman -S gnome
+            
+            else
+
+                echo -e "\n[-] Script for $package not found. Skipping...\n"
+            
+            fi
+                   
+        else
+
+            echo -e "\n[-]Invalid option: $index\n"
+        
+        fi
+    
+    done
+}
+
+
 # LightDM config and installation
 install_lightdm() 
 {
@@ -82,7 +161,7 @@ install_lightdm()
 
 
 
-# __main__ script
+# Main script
 echo -en "\n[?] Do you want to start the installation and CM-OS set up? [y/n] : "
 read START_ANSWER
 
@@ -97,56 +176,11 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
 
     install_xorg
 
+    install_desktop
+
     install_lightdm
-    
+
     sleep 1
-
-
-    ### DEKSTOPS installation
-
-    desktops=("Qtile" "Bspwm" "Gnome" "KDE" "OpenBox" "Xmonad")
-
-    echo -e "\n[*] Dektop and window managers avaliables !\n"
-    
-    for i in "${!desktops[@]}"; do
-    
-        echo -n "$((i+1))) ${desktops[i]}"
-        echo -en "\t"
-
-    done
-
-    echo -en "\n\n[?] Enter a selection (default=all): " 
-    read selection
-
-    # If nothing is entered, default to installing all packages
-    if [ -z "$selection" ]; then
-
-        selection=$(seq -s, 1 ${#desktops[@]})
-    
-    fi
-
-    # Convert comma-separated list of numbers to array
-    IFS=',' read -ra selected_indices <<< "$selection"
-
-    # Install selected or all packages
-    for index in "${selected_indices[@]}"; do
-        
-        # Validate input
-        if [[ $index -ge 1 && $index -le ${#desktops[@]} ]]; then
-        
-            package=${desktops[$((index-1))]}
-            echo -e "\n[*] Installing $package...\n"
-            sudo pacman -S $(echo "$package" | tr 'A-Z' 'a-z')
-            echo -e "\n[+] $package installed successfully !\n"
-        
-        else
-
-            echo -e "\n[-]Invalid option: $index\n"
-        
-        fi
-    
-    done
-
 
 else
 

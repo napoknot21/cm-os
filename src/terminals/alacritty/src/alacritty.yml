@@ -22,8 +22,8 @@ colors :
     #cyan:    '#56b6c2'
     #white:   '#e6efff'
 
-font :
-  size: 7
+#font :
+  #size: 7
   #bold:
     #family: UbuntuMono Nerd font
     #family: mononoki Nerd font
