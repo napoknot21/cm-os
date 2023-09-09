@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# Installer helper for the AUR repos
+#### Installer helper for the AUR repos ####
 
 REPO_DIR="$HOME/.repos"
 PARU_DIR="$REPO_DIR/paru"
 
 # Check if the .repos directory exists
-if [ ! -d "$REPO_DIR" ]; then
+if [[ ! -d "$REPO_DIR" ]]; then
 
     echo "[*] Creating $REPO_DIR directory..."
     mkdir -p "$REPO_DIR"
@@ -43,6 +43,8 @@ if cd "$REPO_DIR"; then
     fi
 
 else
+
     echo -e "\n[-] Failed to change directory to $REPO_DIR.\n"
     exit 1
+
 fi

@@ -1,21 +1,25 @@
 #!/bin/sh
 
-echo -en "\n[?] Do you want to start the installation and set up? [y/n] : "
-read START_ANSWER
+#Variables for the script
+CMOS_PATH=$PWD
+CMOS_DIR_EXTRAS=$CMOS_PATH/extras/
+CMOS_DIR_SCRIPTS=$CMOS_PATH/src/scripts/
 
-handler()
-{
-    kill -s SIGINT $PID
+
+handler() {
+    echo -e "\n\n[-] Script interrupted by user."
+    exit 1
 }
+# This will run the handler function when a SIGINT is received
+trap handler SIGINT
 
 
+# Function that checks your internet connection
 check_internet()
 {
-    tool='curl'
-    tool_opts='-s --connect-timeout 8'
 
-    if ! $tool $tool_opts https://archlinux.org/ > /dev/null 2>&1; then
-    
+    if ! curl -s --connect-timeout 8 https://archlinux.org/ &> /dev/null; then
+
         echo -e "\n[-] You don't have an Internet connection !\n"
         exit 1
     
@@ -25,64 +29,46 @@ check_internet()
 }
 
 
-#Script
-if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
-    
-    #handler()
-    check_internet
-    
-    #Variables for the script
-    CMOS_PATH=$PWD
-    CMOS_DIR_EXTRAS=$CMOS_PATH/extras/
-    CMOS_DIR_SCRIPTS=$CMOS_PATH/src/scripts/
-
-    echo -e "\n[+] Starting installation...\n"
-    
-    
-    sleep 1
+# Git config funciton
+config_git() 
+{
+    chmod +x $CMOS_DIR_SCRIPTS/git/git.sh
+    ./$CMOS_DIR_SCRIPTS/git/git.sh
+}
 
 
-    # REQUIRED PACKAGES AND CONFIG
+# Xorg installation function
+install_xorg() 
+{
+    echo -e "\n[*] Let's install XORG server for graphics !\n"
+    sudo pacman -S xorg xorg-server xorg-xinit xorg-twm
     
-    ### GIT check
+    if [ $? -ne 0 ]; then
     
-    GITCONFIG_FILE=$HOME/.gitconfig
-    
-    if [[ ! -f "$GITCONFIG_FILE" ]]; then
-
-        echo -e "\n[!] .gitconfig does not exist. Creating one now..."
-
-        # Ask for the user's name and email
-        echo -en "\n[?] Enter your name: " 
-        read name_git
-        echo -en "[?] Enter your email: "
-        read email_git
-
-        # Create the .gitconfig file and add name and email
-        git config --global user.name "$name_git"
-        git config --global user.email "$email_git"
-
-        echo -e "\n[*] .gitconfig has been created with the provided name and email."
-
-    else
-    
-        echo "\n[+] .gitconfig already exists. Continuing...\n"
+        echo -e "\n[-] Error installing XORG. Aborting...\n"
+        exit 1
     
     fi
+    
+    echo -e "\n[+] X Server is installed successfully ! Continuing...\n"
+}
 
 
+# __main__ script
+echo -en "\n[?] Do you want to start the installation and CM-OS set up? [y/n] : "
+read START_ANSWER
+
+if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
+    
+    check_internet
+    
+    echo -e "\n[+] Starting installation...\n"
     sleep 1
 
+    configure_git
 
-    ### XORG installation
-
-    echo -e "\n[*] Let's install XORG server for graphics !\n"
-
-    sudo pacman -S xorg xorg-server xorg-xinit
-
-    echo -e "\n[+] X Server is installed successfully ! continuing...\n"
-
-
+    install_xorg
+    
     sleep 1
 
 
@@ -119,7 +105,7 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
         if [[ $index -ge 1 && $index -le ${#desktops[@]} ]]; then
         
             package=${desktops[$((index-1))]}
-            echo -e "\n[*] Installing $package..."
+            echo -e "\n[*] Installing $package...\n"
             sudo pacman -S $(echo "$package" | tr 'A-Z' 'a-z')
             echo -e "\n[+] $package installed successfully !\n"
         
