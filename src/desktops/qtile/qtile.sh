@@ -1,36 +1,39 @@
 #!/bin/sh
 
-if [ -z ${1+x} ]; then 
-    echo -e "[*] The qtile script needs the username as argument...\n"
-    echo -e "[*] Exiting...\n"
-fi
-# Qtile script
+#### Qtile config script #####
 
-echo -e "[!] QTILE !\n"
+DIR_QTILE="$HOME/.config/qtile"
+
+echo -e "\n[!] QTILE !\n"
 
 # Package installation
 echo -e "[*] Installing the package...\n"
-sudo pacman -S qtile
 
-# Config
-echo -e "\n[*] Setting up the hackable twiling window manager...\n"
-
-DIR_QTILE="'$1'/.config/qtile"
-
-if [[ -n $DIR_QTILE  ]]; then
-	rm -r $DIR_QTILE
-else
-	mkdir -p $DIR_QTILE
+if ! sudo pacman -S qtile; then
+    echo -e "\n[-] Failed to install Qtile. Aborting...\n"
+    exit 1
 fi
 
-mv ./src/* $DIR_QTILE
+# Config
+echo -e "\n[*] Setting up the hackable tiling window manager...\n"
 
-# installation used packages
-pacman -S slock brightnessctl redshift scrot
-paru -S betterlockscreen brave-bin
+# Check if directory exists, if it does, delete, otherwise create
+if [ -d "$DIR_QTILE" ]; then
 
-sleep 3
-echo -e "[*] Config successfully copied !\n"
+    rm -r "$DIR_QTILE"
+
+fi
+
+mkdir -p "$DIR_QTILE"
+
+# Copying files
+if ! cp -r ./src/* "$DIR_QTILE"; then
+    echo -e "\n[-] Failed to copy config files. Aborting...\n"
+    exit 1
+fi
+
+
+echo -e "\n[*] Config successfully copied !\n"
 sleep 1
 echo -e "[*] Moving on to the next step...\n"
 

@@ -4,9 +4,11 @@
 CMOS_PATH=$PWD
 CMOS_DIR_EXTRAS=$CMOS_PATH/extras/
 CMOS_DIR_SCRIPTS=$CMOS_PATH/src/scripts/
+CMOS_DIR_TERMINALS=$CMOS_PATH/src/terminals/
 
 
-handler() {
+handler() 
+{
     echo -e "\n\n[-] Script interrupted by user."
     exit 1
 }
@@ -17,7 +19,6 @@ trap handler SIGINT
 # Function that checks your internet connection
 check_internet()
 {
-
     if ! curl -s --connect-timeout 8 https://archlinux.org/ &> /dev/null; then
 
         echo -e "\n[-] You don't have an Internet connection !\n"
@@ -54,10 +55,48 @@ install_xorg()
 }
 
 
+# Shell Installation (Fish and Zsh)
+install_shell() 
+{
+    echo -e "\n[!] Let's install FISH and ZSH shells\n"
+
+    chmod +x $CMOS_DIR_TERMINALS/fish/fish.sh
+    $CMOS_DIR_TERMINALS/fish/fish.sh
+
+    chmod +x $CMOS_DIR_TERMINALS/zsh/zsh.sh
+    $CMOS_DIR_TERMINALS/zsh/zsh.sh
+
+    echo -e "\n[+] Shells are installed successfully !\n"
+}
+
+
+# Terminal installation (Alacritty and Kitty)
+install_terminal() 
+{
+    echo -e "\n[!] Let's install ALACRITTY and KITTY terminals !\n"
+    
+
+    chmod +x $CMOS_DIR_TERMINALS/alacritty/alacritty.sh
+    $CMOS_DIR_TERMINALS/alacritty/alacritty.sh
+
+    chmod +x $CMOS_DIR_TERMINALS/kitty/kitty.sh
+    $CMOS_DIR_TERMINALS/kitty/kitty.sh
+
+    if [ $? -ne 0 ]; then
+
+        echo -e "\n[-] Error installing ALACRITTY and KITTY. Aborting...\n"
+        exit 1
+
+    fi
+
+    echo -e "\n[+] Terminals set up and installed successfully !\n"
+}
+
+
 # Desktop installation
 install_desktop() 
 {
-    desktops=("Qtile" "Bspwm" "Gnome" "KDE" "OpenBox" "Xmonad")
+    desktops=("Qtile" "Bspwm" "OpenBox" "Xmonad")
     
     echo -e "\n[!] DEKSTOP and WM installation !\n"
     
@@ -108,14 +147,6 @@ install_desktop()
             
                 chmod +x $CMOS_PATH/src/desktops/openbox/openbox.sh
                 $CMOS_PATH/src/desktops/openbox/openbox.sh
-            
-            elif [ "$package" == "KDE" ]; then
-
-                sudo pacman -S plasma
-                
-            elif [ "$package" == "Gnome" ]; then
-            
-                sudo pacman -S gnome
             
             else
 
@@ -175,6 +206,10 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     config_git
 
     install_xorg
+
+    install_shell
+
+    install_terminal
 
     install_desktop
 
