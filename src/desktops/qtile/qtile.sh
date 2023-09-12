@@ -27,7 +27,7 @@ fi
 mkdir -p "$DIR_QTILE"
 
 # Copying files
-if ! cp -r ./src/* "$DIR_QTILE"; then
+if ! cp -rv ./src/* "$DIR_QTILE"; then
     echo -e "\n[-] Failed to copy config files. Aborting...\n"
     exit 1
 fi

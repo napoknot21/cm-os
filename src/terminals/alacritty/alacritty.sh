@@ -5,7 +5,7 @@
 echo -e "\n[!] ALACRITTY !\n"
 
 # Package installation
-echo -e "\n[*] Installing the package and dependencies...\n"
+echo -e "\n[*] Installing the package...\n"
 
 sudo pacman -S alacritty
 
