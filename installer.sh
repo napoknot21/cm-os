@@ -191,6 +191,99 @@ install_lightdm()
 }
 
 
+# Paru config
+install_paru()
+{
+    echo -e "\n[!] PARU installation !\n"
+    # Create or ensure .repos directory exists
+    mkdir -p $HOME/.repos
+
+    if [ $? -ne 0 ]; then
+    
+        echo "Failed to create .repos directory."
+        return 1
+    
+    fi
+
+    # Change to .repos directory
+    cd $HOME/.repos
+    
+    if [ $? -ne 0 ]; then
+    
+        echo "Failed to change to .repos directory."
+        return 1
+    
+    fi
+
+    # Clone paru repository if it doesn't exist
+    if [ ! -d "$HOME/.repos/paru" ]; then
+        
+        git clone https://aur.archlinux.org/paru.git
+        
+        if [ $? -ne 0 ]; then
+            
+            echo -e "\n[-] Failed to clone paru repository\n"
+            echo 1
+        
+        fi
+
+    fi
+
+    # Change to paru directory and install
+    cd $HOME/.repos/paru
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to change to paru directory.\n"
+        echo 1
+    
+    fi
+
+    makepkg -si
+    
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to install paru\n"
+        return 1
+    
+    fi
+}
+ 
+
+# Rofi installation and config
+install_rofi() 
+{
+    echo -e "\n[!] ROFI installation !\n"
+
+    # Install rofi and the icon theme
+    sudo pacman -S rofi papirus-icon-theme
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to install rofi and papirus-icon-theme.\n"
+        return 1
+    
+    fi
+
+    # Create or ensure the rofi config directory exists
+    mkdir -p $HOME/.config/rofi
+    if [ $? -ne 0 ]; then
+
+        echo -e "\n[-] Failed to create the rofi directory.\n"
+        return 1
+    
+    fi
+
+    # Copy the rofi config file
+    if ! cp -vc $CMOS_PATH/extras/config.rasi $HOME/.config/rofi; then
+    
+        echo -e "\n[-] Failed to copy the rofi config.\n"
+        return 1
+    
+    fi        
+}
+
+
+
 
 # Main script
 echo -en "\n[?] Do you want to start the installation and CM-OS set up? [y/n] : "
@@ -216,6 +309,10 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     install_lightdm
 
     sleep 1
+
+    install_paru
+
+    install_rofi
 
 else
 

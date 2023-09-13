@@ -38,6 +38,8 @@ if ! cp -rv ./src/.p10k.zsh $HOME/; then
     echo -e "\n[-] Failed to copy kitty p10k configuration. Aborting...\n"
     echo 1
 
+fi
+
 # Success message
 echo -e "\n[+] Kitty succesfully set up !\n"
 
