@@ -97,8 +97,8 @@ screens = [
                 ),
                 widget.TextBox(
                     foreground=["#F07178","#F07178"],
-                    text="", # !  Icon: nf-oct-triangle_left
-                    fontsize=38,
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=40,
                     padding=-3
                 ),    
                 widget.CurrentLayoutIcon(
@@ -126,7 +126,7 @@ screens = [
                 widget.TextBox(
                     foreground=["#0f101a","#0f101a"],
                     background=["#F07178","#F07178"],
-                    text="", # !  Icon: nf-oct-triangle_left
+                    text="", # !  Icon: nf-oct-triangle_left
                     fontsize=38,
                     padding=-3
                 ),
@@ -145,14 +145,14 @@ screens = [
                 widget.TextBox(
                     foreground=["#a151d3","#a151d3"],
                     background=["#0f101a","#0f101a"],
-                    text="", # !  Icon: nf-oct-triangle_left
+                    text="", # !  Icon: nf-oct-triangle_left
                     fontsize=38,
                     padding=-3
                 ),  
                 widget.TextBox(
                     background=["#a151d3","#a151d3"],
                     foreground=["#000000","#000000"], #["#0f101a","#0f101a"],
-                    text=" "
+                    text="󰔠 "
                 ),
                 widget.Clock(
                     background=["#a151d3","#a151d3"],
