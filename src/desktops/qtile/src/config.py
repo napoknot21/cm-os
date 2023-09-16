@@ -99,7 +99,7 @@ screens = [
                     foreground=["#F07178","#F07178"],
                     text="", # !  Icon: nf-oct-triangle_left
                     fontsize=40,
-                    padding=-3
+                    padding=0
                 ),    
                 widget.CurrentLayoutIcon(
                     foreground=["#0f101a","#0f101a"],
@@ -128,7 +128,7 @@ screens = [
                     background=["#F07178","#F07178"],
                     text="", # !  Icon: nf-oct-triangle_left
                     fontsize=38,
-                    padding=-3
+                    padding=0
                 ),
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
@@ -147,7 +147,7 @@ screens = [
                     background=["#0f101a","#0f101a"],
                     text="", # !  Icon: nf-oct-triangle_left
                     fontsize=38,
-                    padding=-3
+                    padding=0
                 ),  
                 widget.TextBox(
                     background=["#a151d3","#a151d3"],
