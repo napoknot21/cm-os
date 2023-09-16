@@ -26,8 +26,6 @@ check_internet()
         exit 1
     
     fi
-
-    return $SUCCESS
 }
 
 
@@ -55,6 +53,15 @@ install_xorg()
     fi
     
     echo -e "\n[+] X Server is installed successfully ! Continuing...\n"
+}
+
+
+
+# Audio installation and config
+install_audio()
+{
+    chmod +x $CMOS_DIR_SCRIPTS/audio/audio.sh
+    $CMOS_DIR_SCRIPTS/audio/audio.sh
 }
 
 
@@ -185,6 +192,7 @@ install_lightdm()
     fi
 
     sudo sed -i "s/#greeter-session=example-gtk-gnome/greeter-session=lightdm-webkit2-greeter/g" /etc/lightdm/lightdm.conf
+    
     # LigthDM config
     sudo systemctl enable lightdm
 
@@ -194,7 +202,7 @@ install_lightdm()
     
     fi
 
-    echo -é "\n[-] Successfully installed lightDM !\n"
+    echo -e "\n[+] Successfully installed lightDM !\n"
 }
 
 
@@ -209,7 +217,7 @@ install_paru()
     if [ $? -ne 0 ]; then
     
         echo "Failed to create .repos directory."
-        return 1
+        exit 1
     
     fi
 
@@ -219,7 +227,7 @@ install_paru()
     if [ $? -ne 0 ]; then
     
         echo "Failed to change to .repos directory."
-        return 1
+        exit 1
     
     fi
 
@@ -231,7 +239,7 @@ install_paru()
         if [ $? -ne 0 ]; then
             
             echo -e "\n[-] Failed to clone paru repository\n"
-            echo 1
+            exit 1
         
         fi
 
@@ -252,9 +260,18 @@ install_paru()
     if [ $? -ne 0 ]; then
     
         echo -e "\n[-] Failed to install paru\n"
-        return 1
+        exit 1
     
     fi
+}
+
+
+
+# Black arch packages installation
+install_blackarch()
+{
+    chmod +x $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
+    $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
 }
 
 
@@ -269,7 +286,7 @@ install_rofi()
     if [ $? -ne 0 ]; then
     
         echo -e "\n[-] Failed to install rofi and papirus-icon-theme.\n"
-        return 1
+        exit 1
     
     fi
 
@@ -278,17 +295,56 @@ install_rofi()
     if [ $? -ne 0 ]; then
 
         echo -e "\n[-] Failed to create the rofi directory.\n"
-        return 1
+        exit 1
     
     fi
 
     # Copy the rofi config file
-    if ! cp -vc $CMOS_PATH/extras/config.rasi $HOME/.config/rofi; then
+    if ! cp -v $CMOS_PATH/extras/config.rasi $HOME/.config/rofi; then
     
         echo -e "\n[-] Failed to copy the rofi config.\n"
-        return 1
+        exit 1
     
     fi        
+}
+
+
+
+# Install fonts
+install_fonts() 
+{
+    echo -e "\n[!] FONTS installation !\n"
+
+    chmod +x $CMOS_DIR/src/fonts/fonts.sh
+    $CMOS_DIR/src/fonts/fonts.sh
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to install fonts\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] Fonts are installed !\n"
+}
+
+
+
+# Browser installation (Brave)
+install_browser()
+{
+    echo -e "\n[!] FONTS installation !\n"
+
+    paru -S brave-bin
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to install Brave\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] Brave is installed successfully !\n"
 }
 
 
@@ -308,6 +364,10 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     config_git
 
     install_xorg
+    
+    install_audio
+
+    sleep 1
 
     install_shell
 
@@ -321,7 +381,13 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
 
     install_paru
 
+    install_blackarch
+    
     install_rofi
+
+    isntall_fonts
+
+    install_browser
 
 else
 

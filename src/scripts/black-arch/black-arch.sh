@@ -7,15 +7,9 @@ echo -e "[!] BLACK ARCH TOOLS ! \n"
 # Check for curl installation
 if ! command -v curl &> /dev/null; then
 
-    echo "[*] curl not found! Installing..."
+    echo -e "\n[*] curl not found! Installing...\n"
     sudo pacman -S curl
     
-	if [ $? -ne 0 ]; then
-    
-	    echo "[-] Failed to install curl. Exiting..."
-        exit 1
-    
-	fi
 fi
 
 echo -n "Do you want to have access to Black-arch repositories? [y/n]: "
@@ -23,10 +17,10 @@ read rep
 
 if [[ $rep = [Yy] || -z $rep ]]; then
 
-    echo "[*] Installing access to black arch repos..."
+    echo -e "\n[*] Installing access to black arch repos...\n"
 
     # Check for ~/.repos directory and navigate to it
-    mkdir -p ~/.repos && cd ~/.repos
+    mkdir $HOME/.repos && cd $HOME/.repos
 
     # Check for black-arch directory or create it and navigate
     mkdir -p black-arch && cd black-arch
@@ -48,7 +42,7 @@ if [[ $rep = [Yy] || -z $rep ]]; then
     echo -ne "\nDo you want to install more interesting black arch packages? [y/n]: "
     read rep1
 
-    if [[ $rep1 == [yY] ]]; then
+    if [[ $rep1 == [yY] || -z $rep1 ]]; then
         
 		sudo pacman -S metasploit ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists
         

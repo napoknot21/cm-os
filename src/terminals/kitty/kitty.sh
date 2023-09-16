@@ -19,7 +19,7 @@ echo -e "\n[*] Setting up the Kitty terminal emulator...\n"
 mkdir -p $HOME/.config/kitty
 
 # Copy the config files
-if ! cp -rv $KITTY_DIR/src/color.ini ./src/kitty.conf $HOME/.config/kitty/; then
+if ! cp -rv $KITTY_DIR/src/color.ini $KITTY_DIR/src/kitty.conf $HOME/.config/kitty/; then
 
     echo -e "\n[-] Failed to copy kitty configuration. Aborting...\n"
     exit 1

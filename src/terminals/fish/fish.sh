@@ -21,7 +21,7 @@ mkdir -p $HOME/.config/fish/
 rm -f $HOME/.config/fish/config.fish
 
 # Copy the config files
-if ! cp $FISH_DIR/src/config.fish $HOME/.config/fish/; then
+if ! cp -v $FISH_DIR/src/config.fish $HOME/.config/fish/; then
 
     echo -e "\n[-] Failed to copy config.fish. Aborting...\n"
     exit 1
