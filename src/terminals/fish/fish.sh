@@ -11,6 +11,9 @@ sudo pacman -S fish starship
 # Config
 echo -e "\n[*] Setting up the interactive shell...\n"
 
+# Fish dir
+FISH_DIR=$0
+
 # Ensure the directory exists or create it
 mkdir -p $HOME/.config/fish/
 
@@ -18,13 +21,13 @@ mkdir -p $HOME/.config/fish/
 rm -f $HOME/.config/fish/config.fish
 
 # Copy the config files
-if ! cp ./src/config.fish $HOME/.config/fish/; then
+if ! cp $FISH_DIR/src/config.fish $HOME/.config/fish/; then
 
     echo -e "\n[-] Failed to copy config.fish. Aborting...\n"
     exit 1
 fi
 
-if ! cp -v ./src/starship.toml $HOME/.config/; then
+if ! cp -v $FISH_DIR/src/starship.toml $HOME/.config/; then
 
     echo -e "\n[-] Failed to copy starship.toml. Aborting...\n"
     exit 1

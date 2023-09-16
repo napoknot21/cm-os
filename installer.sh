@@ -16,6 +16,7 @@ handler()
 trap handler SIGINT
 
 
+
 # Function that checks your internet connection
 check_internet()
 {
@@ -30,12 +31,14 @@ check_internet()
 }
 
 
+
 # Git config funciton
 config_git() 
 {
     chmod +x $CMOS_DIR_SCRIPTS/git/git.sh
     $CMOS_DIR_SCRIPTS/git/git.sh
 }
+
 
 
 # Xorg installation function
@@ -55,19 +58,21 @@ install_xorg()
 }
 
 
+
 # Shell Installation (Fish and Zsh)
 install_shell() 
 {
     echo -e "\n[!] Let's install FISH and ZSH shells\n"
 
     chmod +x $CMOS_DIR_TERMINALS/fish/fish.sh
-    $CMOS_DIR_TERMINALS/fish/fish.sh
+    $CMOS_DIR_TERMINALS/fish/fish.sh $CMOS_DIR_TERMINALS/fish
 
     chmod +x $CMOS_DIR_TERMINALS/zsh/zsh.sh
-    $CMOS_DIR_TERMINALS/zsh/zsh.sh
+    $CMOS_DIR_TERMINALS/zsh/zsh.sh #$CMOS_DIR_TERMINALS/zsh
 
     echo -e "\n[+] Shells are installed successfully !\n"
 }
+
 
 
 # Terminal installation (Alacritty and Kitty)
@@ -77,10 +82,10 @@ install_terminal()
     
 
     chmod +x $CMOS_DIR_TERMINALS/alacritty/alacritty.sh
-    $CMOS_DIR_TERMINALS/alacritty/alacritty.sh
+    $CMOS_DIR_TERMINALS/alacritty/alacritty.sh $CMOS_DIR_TERMINALS/alacritty
 
     chmod +x $CMOS_DIR_TERMINALS/kitty/kitty.sh
-    $CMOS_DIR_TERMINALS/kitty/kitty.sh
+    $CMOS_DIR_TERMINALS/kitty/kitty.sh $CMOS_DIR_TERMINALS/kitty
 
     if [ $? -ne 0 ]; then
 
@@ -91,6 +96,7 @@ install_terminal()
 
     echo -e "\n[+] Terminals set up and installed successfully !\n"
 }
+
 
 
 # Desktop installation
@@ -131,22 +137,22 @@ install_desktop()
             if [ "$package" == "Qtile" ]; then
 
                 chmod +x $CMOS_PATH/src/desktops/qtile/qtile.sh
-                $CMOS_PATH/src/desktops/qtile/qtile.sh
+                $CMOS_PATH/src/desktops/qtile/qtile.sh $CMOS_PATH/src/desktops/qtile
             
             elif [ "$package" == "Bspwm" ]; then
 
                 chmod +x $CMOS_PATH/src/desktops/bspwm/bspwm.sh
-                $CMOS_PATH/src/desktops/bspwm/bspwm.sh
+                $CMOS_PATH/src/desktops/bspwm/bspwm.sh $CMOS_PATH/src/desktops/bspwm
             
             elif [ "$package" == "Xmonad" ]; then
 
                 chmod +x $CMOS_PATH/src/desktops/xmonad/xmonad.sh
-                $CMOS_PATH/src/desktops/xmonad/xmonad.sh
+                $CMOS_PATH/src/desktops/xmonad/xmonad.sh $CMOS_PATH/src/desktops/xmonad
                   
             elif [ "$package" == "OpenBox" ]; then
             
                 chmod +x $CMOS_PATH/src/desktops/openbox/openbox.sh
-                $CMOS_PATH/src/desktops/openbox/openbox.sh
+                $CMOS_PATH/src/desktops/openbox/openbox.sh $CMOS_PATH/src/desktops/openbox
             
             else
 
@@ -162,6 +168,7 @@ install_desktop()
     
     done
 }
+
 
 
 # LightDM config and installation
@@ -189,6 +196,7 @@ install_lightdm()
 
     echo -é "\n[-] Successfully installed lightDM !\n"
 }
+
 
 
 # Paru config
@@ -248,7 +256,8 @@ install_paru()
     
     fi
 }
- 
+
+
 
 # Rofi installation and config
 install_rofi() 

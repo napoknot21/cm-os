@@ -2,39 +2,31 @@
 
 #### Qtile config script #####
 
-DIR_QTILE="$HOME/.config/qtile"
-
 echo -e "\n[!] QTILE !\n"
 
 # Package installation
 echo -e "[*] Installing the package...\n"
 
-if ! sudo pacman -S qtile; then
-    echo -e "\n[-] Failed to install Qtile. Aborting...\n"
-    exit 1
-fi
+sudo pacman -S qtile
 
 # Config
 echo -e "\n[*] Setting up the hackable tiling window manager...\n"
 
+# Path directory
+QTILE_DIR=$0
+
 # Check if directory exists, if it does, delete, otherwise create
-if [ -d "$DIR_QTILE" ]; then
-
-    rm -r "$DIR_QTILE"
-
-fi
-
-mkdir -p "$DIR_QTILE"
+mkdir -p $HOME/.config/qtile
 
 # Copying files
-if ! cp -rv ./src/* "$DIR_QTILE"; then
+if ! cp -rv $QTILE_DIR/src/* $HOME/.config/qtile; then
+
     echo -e "\n[-] Failed to copy config files. Aborting...\n"
     exit 1
+
 fi
 
-
+# Success message
 echo -e "\n[*] Config successfully copied !\n"
-sleep 1
-echo -e "[*] Moving on to the next step...\n"
 
 # Author @napoknot21

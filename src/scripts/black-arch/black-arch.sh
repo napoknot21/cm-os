@@ -2,58 +2,85 @@
 
 # Repositories from Black-arch (pentesting and hacking utils)
 
-echo "[!] BLACK ARCH TOOLS ! \n"
+echo -e "[!] BLACK ARCH TOOLS ! \n"
 
-echo -n "Do you want to have acces to Black-arch repositories ? [y/n]: "
+# Check for curl installation
+if ! command -v curl &> /dev/null; then
+
+    echo "[*] curl not found! Installing..."
+    sudo pacman -S curl
+    
+	if [ $? -ne 0 ]; then
+    
+	    echo "[-] Failed to install curl. Exiting..."
+        exit 1
+    
+	fi
+fi
+
+echo -n "Do you want to have access to Black-arch repositories? [y/n]: "
 read rep
 
-if [[ $rep = [Yy] ]]; then
+if [[ $rep = [Yy] || -z $rep ]]; then
 
-	echo "[*] Installing acces to black arch repos..."
-	cd ~/.repos
-	mkdir black-arch && cd black-arch
-	curl -o https://blackarch.org/strap.sh
-	chmod +x strap.sh
-	sudo ./strap.sh
+    echo "[*] Installing access to black arch repos..."
 
-	#Installing basic tools
-	echo "[*] Installing the basic tools..."
-	sudo pacman -S nmap whatweb wfuzz wireshark-cli wireshark-qt exploitdb smbclient smbmap evil-winrm
+    # Check for ~/.repos directory and navigate to it
+    mkdir -p ~/.repos && cd ~/.repos
 
-	echo "[*] Basic black arch tools successfully installed !"
-        sleep 1
+    # Check for black-arch directory or create it and navigate
+    mkdir -p black-arch && cd black-arch
 
-	echo -n "Do you want to install more interesting black arch packages ? [y/n]: "
-	read rep1
+    # Fetch strap.sh
+    curl -O https://blackarch.org/strap.sh
 
-	if [[ $rep1 == [yY] ]]; then
+    chmod +x strap.sh
+    sudo ./strap.sh
+
+    # Installing basic tools
+    echo -e "\n[*] Installing the basic tools...\n"
+
+    sudo pacman -S nmap whatweb wfuzz wireshark-cli wireshark-qt exploitdb smbclient smbmap evil-winrm
+
+    echo -e "\n[+] Basic black arch tools successfully installed !\n"
+    sleep 1
+
+    echo -ne "\nDo you want to install more interesting black arch packages? [y/n]: "
+    read rep1
+
+    if [[ $rep1 == [yY] ]]; then
+        
 		sudo pacman -S metasploit ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists
-		echo "[*] Basic black arch tools successfully installed !"
-		sleep 1
+        
+		echo -e "\n[*] Basic black arch tools successfully installed!\n"
 
-		echo "Do you want to install advanced tools for pentesting/hacking ? [y/n]: "
-		read rep2
+        echo -en "\nDo you want to install advanced tools for pentesting/hacking? [y/n]: "
+        read rep2
 
-		if [[ $rep2 == [yY] ]]; then
-			sudo pacman -S wpscan wafw00f sploitctl rsync redis openvpn nikto hash-identifier fcrackzip burpsuite aircrack-ng perl-image-exiftool venom
-			#paru -S mkpasswd [OBSOLET PCKG]
+        if [[ $rep2 == [yY] || -z $rep2 ]]; then
 
-			echo "[*] Advanced black arch tools installed successfully !"
-			sleep 1
-		else
-			echo "[*] Advanced black arch tools installed successfully !"
-			sleep 1
-		fi
-	else 
-		echo "[*] Basic black arch tools successfully installed !"
-		sleep 1
+            sudo pacman -S wpscan wafw00f sploitctl rsync redis openvpn nikto hash-identifier fcrackzip burpsuite aircrack-ng perl-image-exiftool venom
+
+            echo -e "\n[+] Advanced black arch tools installed successfully!\n"
+            
+        else
+
+            echo -e "\n[-] Skipping advanced tools installation.\n"
+            
+        fi
+
+    else
+
+        echo -e "\n[+] Basic black arch tools successfully installed!\n"
+        sleep 1
+    
 	fi
 
 else
-	echo "[*] Process passed away"
-	sleep 1
-fi
 
-echo "[*] Moving on to the next step..."
+    echo -e "\n[*] Process passed away\n"
+    sleep 1
+
+fi
 
 # Author @napoknot21
