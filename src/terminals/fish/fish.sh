@@ -12,7 +12,7 @@ sudo pacman -S fish starship
 echo -e "\n[*] Setting up the interactive shell...\n"
 
 # Fish dir
-FISH_DIR=$0
+FISH_DIR=$1
 
 # Ensure the directory exists or create it
 mkdir -p $HOME/.config/fish/

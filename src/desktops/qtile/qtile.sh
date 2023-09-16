@@ -13,7 +13,7 @@ sudo pacman -S qtile
 echo -e "\n[*] Setting up the hackable tiling window manager...\n"
 
 # Path directory
-QTILE_DIR=$0
+QTILE_DIR=$1
 
 # Check if directory exists, if it does, delete, otherwise create
 mkdir -p $HOME/.config/qtile
