@@ -1,1 +1,1 @@
-sudo pacman -S bspwm sxhkdrc
+sudo pacman -S bspwm sxhkd

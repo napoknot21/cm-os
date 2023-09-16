@@ -326,8 +326,8 @@ install_lang()
 {
     echo -e "\n[!] PROGRAMMING LANGUAGES installation\n"
 
-    chmod +x $CMOS_DIR/src/prg-lan/prg-lan.sh
-    $CMOS_DIR/src/prg-lan/prg-lan.sh
+    chmod +x $CMOS_PATH/src/prg-lan/prg-lan.sh
+    $CMOS_PATH/src/prg-lan/prg-lan.sh
 
     if [ $? -ne 0 ]; then
     
@@ -376,7 +376,7 @@ install_blackarch()
 
     fi
 
-    echo -e "\[+] Black arch successfully synchronised !\n"
+    echo -e "\n[+] Black arch successfully synchronised !\n"
 }
 
 
