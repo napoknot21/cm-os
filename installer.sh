@@ -207,75 +207,6 @@ install_lightdm()
 
 
 
-# Paru config
-install_paru()
-{
-    echo -e "\n[!] PARU installation !\n"
-    # Create or ensure .repos directory exists
-    mkdir -p $HOME/.repos
-
-    if [ $? -ne 0 ]; then
-    
-        echo "Failed to create .repos directory."
-        exit 1
-    
-    fi
-
-    # Change to .repos directory
-    cd $HOME/.repos
-    
-    if [ $? -ne 0 ]; then
-    
-        echo "Failed to change to .repos directory."
-        exit 1
-    
-    fi
-
-    # Clone paru repository if it doesn't exist
-    if [ ! -d "$HOME/.repos/paru" ]; then
-        
-        git clone https://aur.archlinux.org/paru.git
-        
-        if [ $? -ne 0 ]; then
-            
-            echo -e "\n[-] Failed to clone paru repository\n"
-            exit 1
-        
-        fi
-
-    fi
-
-    # Change to paru directory and install
-    cd $HOME/.repos/paru
-
-    if [ $? -ne 0 ]; then
-    
-        echo -e "\n[-] Failed to change to paru directory.\n"
-        echo 1
-    
-    fi
-
-    makepkg -si
-    
-    if [ $? -ne 0 ]; then
-    
-        echo -e "\n[-] Failed to install paru\n"
-        exit 1
-    
-    fi
-}
-
-
-
-# Black arch packages installation
-install_blackarch()
-{
-    chmod +x $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
-    $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
-}
-
-
-
 # Rofi installation and config
 install_rofi() 
 {
@@ -330,6 +261,115 @@ install_fonts()
 
 
 
+# Paru config
+install_paru()
+{
+    echo -e "\n[!] PARU installation !\n"
+    # Create or ensure .repos directory exists
+    mkdir -p $HOME/.repos
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to create .repos directory.\n"
+        exit 1
+    
+    fi
+
+    # Change to .repos directory
+    cd $HOME/.repos
+    
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to change to .repos directory.\n"
+        exit 1
+    
+    fi
+
+    # Clone paru repository if it doesn't exist
+    if [ ! -d "$HOME/.repos/paru" ]; then
+        
+        git clone https://aur.archlinux.org/paru.git
+        
+        if [ $? -ne 0 ]; then
+            
+            echo -e "\n[-] Failed to clone paru repository\n"
+            exit 1
+        
+        fi
+
+    fi
+
+    # Change to paru directory and install
+    cd $HOME/.repos/paru
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to change to paru directory.\n"
+        echo 1
+    
+    fi
+
+    makepkg -si
+    
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to install paru\n"
+        exit 1
+    
+    fi
+}
+
+
+
+# Programming languages installation
+install_lang()
+{
+    echo -e "\n[!] PROGRAMMING LANGUAGES installation\n"
+
+    chmod +x $CMOS_DIR/src/prg-lan/prg-lan.sh
+    $CMOS_DIR/src/prg-lan/prg-lan.sh
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed install the programming languages...\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] Python, Java, C, etc... Set up correctly !\n"
+}
+
+
+
+# Base packages installation
+install_base()
+{
+    echo -e "\n[!] BASE PACKAGES installation\n"
+
+    chmod +x $CMOS_DIR_SCRIPTS/base-pkg/base_pkg.sh
+    $CMOS_DIR_SCRIPTS/base-pkg/base_pkg.sh
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed install the base packages for the environment...\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] Packages installed successfully !\n"
+}
+
+
+
+# Black arch packages installation
+install_blackarch()
+{
+    chmod +x $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
+    $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
+}
+
+
+
 # Browser installation (Brave)
 install_browser()
 {
@@ -376,16 +416,20 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     install_desktop
 
     install_lightdm
-
-    sleep 1
-
-    install_paru
-
-    install_blackarch
     
     install_rofi
+    
+    sleep 1
 
-    isntall_fonts
+    install_fonts
+    
+    install_paru
+
+    install_lang
+
+    install_base
+
+    install_blackarch
 
     install_browser
 

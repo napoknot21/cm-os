@@ -10,34 +10,34 @@
 
 
 ## Java
-pacman -S java-runtime-common java-environment-common
-pacman -S jdk-openjdk openjdk-doc
-pacman -S jre-openjdk jre-openjdk-headless
-pacman -S java-openjfx java-openjfx-doc
+sudo pacman -S java-runtime-common java-environment-common
+sudo pacman -S jdk-openjdk openjdk-doc
+sudo pacman -S jre-openjdk jre-openjdk-headless
+sudo pacman -S java-openjfx java-openjfx-doc
 
 ## Python
-pacman -S python
-pacman -S tk python-pyqt5
-pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
-pacman -S python-tensorflow python-pytorch
+sudo pacman -S python
+sudo pacman -S tk python-pyqt5
+sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
+sudo pacman -S python-tensorflow python-pytorch
 # Addional pcks
-pacman -S ipython python-regex python-cv2 python-opencv
+sudo pacman -S ipython python-regex python-cv2 python-opencv
 paru -S python-gym
 
 ## C/C++
-pacman -S gcc
-pacman -S valgrind gdb cmake man-db man-pages
+sudo pacman -S gcc
+sudo pacman -S valgrind gdb cmake man-db man-pages
 
 ## Ocaml
-pacman -S ocaml dune opam
-pacman -S ocaml-base
+sudo pacman -S ocaml dune opam
+sudo pacman -S ocaml-base
 
 ## haskell
-pacman -S ghc cabal-install
+sudo pacman -S ghc cabal-install
 
 ## DB (sql and psql)
-pacman -S postgresql mysql
+sudo pacman -S postgresql mysql
 
 ## ohters
-pacman -S rust go ruby nodejs npm
+sudo pacman -S rust go ruby nodejs npm
 
