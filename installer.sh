@@ -150,6 +150,8 @@ install_desktop()
 
                 chmod +x $CMOS_PATH/src/desktops/bspwm/bspwm.sh
                 $CMOS_PATH/src/desktops/bspwm/bspwm.sh $CMOS_PATH/src/desktops/bspwm
+                chmod +x $CMOS_DIR_SCRIPTS/polybar/polybar.sh
+                $CMOS_DIR_SCRIPTS/polybar/polybar.sh
             
             elif [ "$package" == "Xmonad" ]; then
 
@@ -384,7 +386,7 @@ install_blackarch()
 # Browser installation (Brave)
 install_browser()
 {
-    echo -e "\n[!] FONTS installation !\n"
+    echo -e "\n[!] BRAVE installation !\n"
 
     paru -S brave-bin
 
@@ -443,6 +445,10 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     install_blackarch
 
     install_browser
+
+    #install_themes
+
+    #final_config
 
 else
 

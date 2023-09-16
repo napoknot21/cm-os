@@ -44,7 +44,7 @@ if [[ $rep = [Yy] || -z $rep ]]; then
 
     if [[ $rep1 == [yY] || -z $rep1 ]]; then
         
-		sudo pacman -S metasploit ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists
+		sudo pacman -S ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists net-tools arp-scan
         
 		echo -e "\n[*] Basic black arch tools successfully installed!\n"
 
@@ -53,7 +53,7 @@ if [[ $rep = [Yy] || -z $rep ]]; then
 
         if [[ $rep2 == [yY] || -z $rep2 ]]; then
 
-            sudo pacman -S wpscan wafw00f sploitctl rsync redis openvpn nikto hash-identifier fcrackzip burpsuite aircrack-ng perl-image-exiftool venom
+            sudo pacman -S wpscan wafw00f sploitctl rsync redis openvpn nikto hash-identifier fcrackzip burpsuite aircrack-ng perl-image-exiftool venom macchanger
 
             echo -e "\n[+] Advanced black arch tools installed successfully!\n"
             

@@ -24,16 +24,18 @@ sudo pacman -S python-tensorflow python-pytorch
 sudo pacman -S ipython python-regex python-cv2 python-opencv
 paru -S python-gym
 
+# QT5
+sudo pacman -S qt5-quickcontrols qt5-script qt5-sensors qt5-tools qt5-webchannel qt5-webengine qt5-webkit qt5-websockets
+
 ## C/C++
-sudo pacman -S gcc
-sudo pacman -S valgrind gdb cmake man-db man-pages
+sudo pacman -S valgrind gdb cmake man-pages
 
 ## Ocaml
 sudo pacman -S ocaml dune opam
 sudo pacman -S ocaml-base
 
 ## haskell
-sudo pacman -S ghc cabal-install
+sudo pacman -S cabal-install
 
 ## DB (sql and psql)
 sudo pacman -S postgresql mysql
