@@ -246,8 +246,8 @@ install_fonts()
 {
     echo -e "\n[!] FONTS installation !\n"
 
-    chmod +x $CMOS_DIR/src/fonts/fonts.sh
-    $CMOS_DIR/src/fonts/fonts.sh
+    chmod +x $CMOS_PATH/src/fonts/fonts.sh
+    $CMOS_PATH/src/fonts/fonts.sh
 
     if [ $? -ne 0 ]; then
     
@@ -366,6 +366,17 @@ install_blackarch()
 {
     chmod +x $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
     $CMOS_DIR_SCRIPTS/black-arch/black-arch.sh
+
+    sudo pacman -Syyyu
+
+    if [ $? -ne 0 ]; then
+
+        echo -e "\n[-] Impossible synchronize the database\n"
+        exit 1
+
+    fi
+
+    echo -e "\[+] Black arch successfully synchronised !\n"
 }
 
 
