@@ -75,7 +75,7 @@ install_shell()
     $CMOS_DIR_TERMINALS/fish/fish.sh $CMOS_DIR_TERMINALS/fish
 
     chmod +x $CMOS_DIR_TERMINALS/zsh/zsh.sh
-    $CMOS_DIR_TERMINALS/zsh/zsh.sh #$CMOS_DIR_TERMINALS/zsh
+    $CMOS_DIR_TERMINALS/zsh/zsh.sh $CMOS_DIR_TERMINALS/zsh
 
     echo -e "\n[+] Shells are installed successfully !\n"
 }
