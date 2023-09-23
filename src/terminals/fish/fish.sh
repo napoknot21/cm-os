@@ -34,6 +34,9 @@ if ! cp -v $FISH_DIR/src/starship.toml $HOME/.config/; then
 
 fi
 
+# Change shell
+chsh -s /bin/fish
+
 # Success message
 echo -e "\n[+] Fish succesfully installed and set up !\n"
 
