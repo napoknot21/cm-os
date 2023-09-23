@@ -151,7 +151,7 @@ install_desktop()
                 chmod +x $CMOS_PATH/src/desktops/bspwm/bspwm.sh
                 $CMOS_PATH/src/desktops/bspwm/bspwm.sh $CMOS_PATH/src/desktops/bspwm
                 chmod +x $CMOS_DIR_SCRIPTS/polybar/polybar.sh
-                $CMOS_DIR_SCRIPTS/polybar/polybar.sh
+                $CMOS_DIR_SCRIPTS/polybar/polybar.sh $CMOS_DIR_SCRIPTS/polybar
             
             elif [ "$package" == "Xmonad" ]; then
 
@@ -410,7 +410,8 @@ install_themes()
     icons=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru_1.9.3.zip)
     theme=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-2.9.9-05.zip)
 
-    sudo mv $icons /usr/share/icons && sudo mv $theme /usr/share/themes
+    sudo mv $icons /usr/share/icons
+    sudo mv $theme /usr/share/themes
 
     if [ $? -ne 0 ]; then
     
