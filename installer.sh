@@ -402,6 +402,46 @@ install_browser()
 
 
 
+# Theme installation and config
+install_themes()
+{
+    echo -e "\n[!] THEME Material Black Blueberry !\n"
+
+    icons=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru_1.9.3.zip)
+    theme=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-2.9.9-05.zip)
+
+    sudo mv $icons /usr/share/icons && sudo mv $theme /usr/share/themes
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to config the theme and the icons...\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] theme and icons are installed successfully !\n"
+}
+
+
+
+# Xprofile configuration settings
+final_config ()
+{
+    echo -e "\n[-] Xprofile settings ! \n"
+
+    cp $CMOS_PATH/extras/.xprofile $HOME
+
+    if [ $? -ne 0 ]; then
+    
+        echo -e "\n[-] Failed to set up the final config...\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] BFinal config set up successfully !\n"
+}
+
+
 
 # Main script
 echo -en "\n[?] Do you want to start the installation and CM-OS set up? [y/n] : "
@@ -446,9 +486,9 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
 
     install_browser
 
-    #install_themes
+    install_themes
 
-    #final_config
+    final_config
 
 else
 
