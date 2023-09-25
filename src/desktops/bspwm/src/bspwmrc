@@ -19,5 +19,5 @@ bspc rule -a Screenkey manage=off
 
 feh --bg-scale ~/Images/Wallpapers/arch-fond02.jpg &
 ~/.config/polybar/./launch.sh &
-picom &
+picom --config ~/.config/bspwm/scripts/picom.conf &
 bscp config border_width 0
