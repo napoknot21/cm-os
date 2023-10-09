@@ -16,7 +16,6 @@ sudo pacman -S jre-openjdk jre-openjdk-headless
 sudo pacman -S java-openjfx java-openjfx-doc
 
 ## Python
-sudo pacman -S python
 sudo pacman -S tk python-pyqt5
 sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
 sudo pacman -S python-tensorflow python-pytorch
