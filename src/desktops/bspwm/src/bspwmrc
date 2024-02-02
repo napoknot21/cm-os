@@ -4,7 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-bspc config border_width         1
+bspc config border_width         0
 bspc config window_gap          12
 
 bspc config split_ratio          0.52
@@ -17,7 +17,8 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-feh --bg-scale ~/Images/Wallpapers/arch-fond02.jpg &
+# Custom
+feh --bg-fill ~/Images/Wallpapers/arch-fond06.jpg &
 ~/.config/polybar/./launch.sh &
-picom --config ~/.config/bspwm/scripts/picom.conf &
-bscp config border_width 0
+picom ~/.config/picom/picom_bspwm.conf &
+wmname LG3D &

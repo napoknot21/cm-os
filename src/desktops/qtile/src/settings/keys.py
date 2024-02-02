@@ -59,8 +59,8 @@ keys = [
     Key([mod, "shift"], "b", lazy.spawn("brave --incognito"), desc="Open a new private window of the browser"),
 
     #rofi (menu)
-    Key([mod], "m", lazy.spawn("rofi -show drun"), desc="open the rofi menu"), #we exec drun in order to show icons
-    Key([mod, "shift"], "m", lazy.spawn("rofi -show"), desc="list all the active windows"),
+    Key([mod], "m", lazy.spawn("rofi -show drun -config ~/.config/rofi/config_qtile.rasi"), desc="open the rofi menu"), #we exec drun in order to show icons
+    Key([mod, "shift"], "m", lazy.spawn("rofi -show window -config ~/.config/rofi/config_qtile.rasi"), desc="list all the active windows"),
 
     #scrot (screenshot)
     Key([mod], "s", lazy.spawn("scrot -e 'mv $f ~/Images/Screenshots/'"), desc="take a screenshot of the (all) window(s)"),

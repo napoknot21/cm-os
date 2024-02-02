@@ -6,21 +6,12 @@
 echo -e "\n[!] AUDIO config !\n"
 
 # Try to install the packages
-if ! sudo pacman -S pulseaudio sof-firmware alsa-ucm-conf pavucontrol; then
+# In case that you want to install pulseaudio, then install this instead
+# sudo pacman -S pulseaudio pavucontrol sof-firmware alsa-ucm-conf
+if ! sudo pacman -S pipiwire sof-firmware alsa-ucm-conf ; then
 
     echo -e "\n[-] Failed to install packages\n"
     exit 1
-    
-fi
-
-sudo pacman -S alsa-oss
-
-sudo modprobe snd-seq-oss snd-pcm-oss snd-mixer-oss
-
-if [ $? -ne 0 ]; then
-    
-        echo -e "\n[-] Error installing audio improves. Aborting...\n"
-        exit 1
     
 fi
 

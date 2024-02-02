@@ -5,51 +5,55 @@ end
 
 # Aliases (general)
 function ls
-  command lsd --color=always --group-directories-first $argv
+    command lsd --color=always --group-directories-first $argv
 end
 
 function ll
-  command lsd -lh --color=always --group-directories-first $argv
+    command lsd -lh --color=always --group-directories-first $argv
 end
 
 function la 
-  command lsd -a --color=always --group-directories-first $argv
+    command lsd -a --color=always --group-directories-first $argv
 end
 
 function lla
-  command lsd -lha --color=always --group-directories-first $argv
+    command lsd -lha --color=always --group-directories-first $argv
 end
 
 function cat
-  command bat $argv
+    command bat $argv
 end
 
 function catn
-  command bat --style=plain $argv
+    command bat --style=plain $argv
 end
 
 function catnp
-  command bat --style=plain --paging=never $argv
+    command bat --style=plain --paging=never $argv
 end
 
-#function man
-  #command batman
-#end
+function man
+    command batman $argv
+end
+
+function mdcat
+    command mdcat $argv | cat
+end
 
 function tree
-  command exa -T --icons $argv
+    command exa -T --icons $argv
 end
 
 function grep
-  command grep --color=auto $argv
+    command grep --color=auto $argv
 end
 
 function egrep
-  command egrep --color=auto $argv
+    command egrep --color=auto $argv
 end
 
 function fgrep
-  command fgrep --color=auto $argv
+    command fgrep --color=auto $argv
 end
 
 
@@ -66,23 +70,27 @@ set release_arena_vpn (locate release_arena_Napoknot21.ovpn)
 set competitive_vpn (locate competitive_Napoknot21.ovpn)
 
 function vpn-sp
-  command sudo openvpn $starting_point_vpn
+    command sudo openvpn $starting_point_vpn
 end
 
 function vpn-labs
-  command sudo openvpn $lab_vpn
+    command sudo openvpn $lab_vpn
 end
 
 function vpn-fortress
-  command sudo openvpn $fortress_vpn
+    command sudo openvpn $fortress_vpn
 end
 
 function vpn-arena
-  command sudo openvpn $release_arena_vpn
+    command sudo openvpn $release_arena_vpn
 end
 
-function vpn-comp
-  command sudo openvpn $competitive_vpn
+function vpn-compcommand
+    command sudo openvpn $competitive_vpn
+end
+
+function mktree
+    command mkdir {nmap,content,exploits}
 end
 
 
@@ -93,21 +101,24 @@ set osDiscovery_script (locate osDiscovery.sh)
 set scanPorts_script (locate scanPorts.sh)
 
 function extractPorts
-  command $extractPorts_script $argv
+    command $extractPorts_script $argv
 end
 
 function hostDiscovery
-  command $hostDiscovery_script $argv
+    command $hostDiscovery_script $argv
 end
 
 function osDiscovery
-  command $osDiscovery_script $argv
+    command $osDiscovery_script $argv
 end
 
 function scanPorts
-  command $scanPorts_script $argv
+    command $scanPorts_script $argv
 end
 
 
 #starShip
 starship init fish | source
+
+# opam configuration
+source /home/napoknot21/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
