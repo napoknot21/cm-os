@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Script for installing the following programming langages and some important libraries :
+# Script for installing (and config) the following programming langages and some important libraries :
 # java
 # C/C++ (compiler)
 # python
@@ -12,13 +12,13 @@
 ## Java
 sudo pacman -S java-runtime-common java-environment-common
 sudo pacman -S jdk-openjdk openjdk-doc
-sudo pacman -S jre-openjdk jre-openjdk-headless
 sudo pacman -S java-openjfx java-openjfx-doc
 
 ## Python
 sudo pacman -S tk python-pyqt5
 sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
 sudo pacman -S python-tensorflow python-pytorch
+
 # Addional pcks
 sudo pacman -S ipython python-regex python-cv2 python-opencv
 paru -S python-gym
@@ -31,14 +31,26 @@ sudo pacman -S valgrind gdb cmake man-pages
 
 ## Ocaml
 sudo pacman -S ocaml dune opam
-sudo pacman -S ocaml-base
+opam init
+sudo pacman -S ocaml-base ocaml-compiler-libs ocaml-sexplib0
 
 ## haskell
 sudo pacman -S cabal-install
 
 ## DB (sql and psql)
 sudo pacman -S postgresql mysql
+sudo -u postgres initdb -D /var/lib/postgres/data
+sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo systemctl enable mariadb.service postgresql.service
+
+## Android
+sudo pacman -S android-emulator android-file-transfer android-sdk android-sdk-platform-tools android-tools android-udev
+
+## Virtualbox
+sudo pacman -S virtual virtualbox-host-modules-arch virtualbox-guest-iso
+sudo usermod -aG vboxusers $USER
+paru -S virtualbox-ext-oracle
 
 ## ohters
-sudo pacman -S rust go ruby nodejs npm
-
+sudo pacman -S rust go ruby nodejs npm docker 
+sudo usermod -aG docker $USER

@@ -35,6 +35,7 @@ if [[ $rep = [Yy] || -z $rep ]]; then
     echo -e "\n[*] Installing the basic tools...\n"
 
     sudo pacman -S nmap whatweb wfuzz wireshark-cli wireshark-qt exploitdb smbclient smbmap evil-winrm
+    sudo usermod -aG wireshark $USER
 
     echo -e "\n[+] Basic black arch tools successfully installed !\n"
     sleep 1
@@ -44,7 +45,7 @@ if [[ $rep = [Yy] || -z $rep ]]; then
 
     if [[ $rep1 == [yY] || -z $rep1 ]]; then
         
-		sudo pacman -S ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists net-tools arp-scan
+		sudo pacman -S ettercap responder tcpdump gobuster dirbuster crackmapexec sqlmap seclists net-tools arp-scan bruteforce-luks
         
 		echo -e "\n[*] Basic black arch tools successfully installed!\n"
 

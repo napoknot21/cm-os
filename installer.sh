@@ -487,7 +487,7 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
 
     install_browser
 
-    install_themes
+    #install_themes
 
     final_config
 
