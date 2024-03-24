@@ -13,26 +13,8 @@ else
     xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI1 --off &
 fi
 
-# Composer
-picom &
-
-# Network
-nm-applet &
-
-#keyboard layout
+# Keyboard layout
 setxkbmap fr &
 
-#discord
+# Discord
 discord &
-
-#wallpaper
-feh --bg-scale ~/Images/Wallpapers/arch-fond03.jpg &
-
-#battery status
-cbatticon &
-
-#usb
-udiskie -t &
-
-#audio
-volumeicon &

@@ -26,14 +26,6 @@ if ! cp -rv $KITTY_DIR/src/color.ini $KITTY_DIR/src/kitty.conf $HOME/.config/kit
 
 fi
 
-# Copy the prompt config
-if ! cp -rv $KITTY_DIR/src/.p10k.zsh $HOME/; then
-
-    echo -e "\n[-] Failed to copy kitty p10k configuration. Aborting...\n"
-    echo 1
-
-fi
-
 # Success message
 echo -e "\n[+] Kitty succesfully set up !\n"
 

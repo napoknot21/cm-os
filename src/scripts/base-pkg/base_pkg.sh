@@ -3,7 +3,7 @@
 # Base packages for the ArchLinux system
 
 # For images and 
-sudo pacman -S feh picom
+sudo pacman -S feh
 
 # Icons and widgets
 sudo pacman -S volumeicon udiskie cbatticon libnotify notification-daemon neofetch

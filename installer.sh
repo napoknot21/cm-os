@@ -233,7 +233,7 @@ install_rofi()
     fi
 
     # Copy the rofi config file
-    if ! cp -v $CMOS_PATH/extras/config.rasi $HOME/.config/rofi; then
+    if ! cp -rv $CMOS_DIR_SCRIPTS/rofi/src/* $HOME/.config/rofi; then
     
         echo -e "\n[-] Failed to copy the rofi config.\n"
         exit 1
@@ -363,6 +363,33 @@ install_base()
 
 
 
+# Base Picom file config 
+install_picom()
+{
+    echo -e "\n[!] PICOM SETUP !\n"
+
+    # Create or ensure the picom config directory exists
+    mkdir -p $HOME/.config/picom
+    if [ $? -ne 0 ]; then
+
+        echo -e "\n[-] Failed to create the picom directory.\n"
+        exit 1
+    
+    fi
+
+    # Copy the rofi config file
+    if ! cp -rv $CMOS_DIR_SCRIPTS/picom/src/* $HOME/.config/picom; then
+    
+        echo -e "\n[-] Failed to copy the rofi config.\n"
+        exit 1
+    
+    fi
+
+    echo -e "\n[+] Picom set up successfully !\n"
+}
+
+
+
 # Black arch packages installation
 install_blackarch()
 {
@@ -483,11 +510,13 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
 
     install_base
 
+    install_picom
+
     install_blackarch
 
     install_browser
 
-    #install_themes
+    install_themes
 
     final_config
 
