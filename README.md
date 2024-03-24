@@ -8,19 +8,19 @@ Custom settings for Arch-linux including a desktop environment (window manager) 
 
 The CM-OS just need a basic installation of arch linux !
 
-If you are new and don't how to install arch, check my cutomised archlinux installation guide [here](https://github.com/napoknot21/cm-os/blob/main/doc/archLinuxInstallionGuide.md).
+If you are new and don't know how to install Archlinux, check my customized Arch Linux installation guide [here](./doc/archLinuxInstallionGuide.md).
 
-The following script will allow you to install a customised version of any desktop environement avalaibles in this repo (qtile, xmonand, openbox, gnome, kde, etc)
+The following script will allow you to install a customized version of any desktop environment available in this repo (qtile, xmonad, openbox, gnome, kde, etc).
 
 For more details about the final result, check the images directory. That may help you to choose the desktop (or desktops) you like the most !
 > TODO: Not images yet
 
-And finally, be sure of being in the `wheel` group, beacause you will install few packages !
+And finally, be sure to be in the `wheel` group because you will install a few packages!
 
 
 ## Installation 
 
-Clone this repository in your ```~/``` directory (or wherever you want)
+Clone this repository in your ```~``` (or `$HOME`) directory or wherever you want
 ```
 git clone https://github.com/napoknot21/cm-os.git
 ```
@@ -42,4 +42,4 @@ Finally, execute the installer script
 
 ## Details
 
-In the [documentation](./documentation) directory, you will find a detailed guides if you want to build these customised desktops environement by your own !
+In the [documentation](./doc/) directory, you will find detailed guides if you want to build these customized desktop environments by yourself !
