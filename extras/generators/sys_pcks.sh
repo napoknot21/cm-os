@@ -1,5 +1,5 @@
 #!/usr/bin/sh
 
 
-pacman -Qe > ./../pacman_pcks
-paru -Qe > ./../paru_pcks
+pacman -Q > ./../pacman_pcks
+paru -Qm > ./../paru_pcks

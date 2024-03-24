@@ -434,15 +434,38 @@ install_themes()
 {
     echo -e "\n[!] THEME Material Black Blueberry !\n"
 
-    icons=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru_1.9.3.zip)
-    theme=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-2.9.9-05.zip)
+    #icons=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru_1.9.3.zip)
+    #theme=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-2.9.9-05.zip)
 
-    sudo mv $icons /usr/share/icons
-    sudo mv $theme /usr/share/themes
+    #sudo mv $icons /usr/share/icons
+    #sudo mv $theme /usr/share/themes
+
+    #if [ $? -ne 0 ]; then
+    
+    #    echo -e "\n[-] Failed to config the theme and the icons...\n"
+        #exit 1
+    
+    #fi
+
+    if ! cp -v $CMOS_DIR_EXTRAS/.gtkrc-2.0 $HOME; then
+    
+        echo -e "\n[-] Failed to copy the .gtkrc-2.0 config.\n"
+        exit 1
+    
+    fi
+
+    mkdir -p $HOME/.config/gtk-3.0
 
     if [ $? -ne 0 ]; then
     
-        echo -e "\n[-] Failed to config the theme and the icons...\n"
+        echo -e "\n[-] Failed to install Brave\n"
+        exit 1
+    
+    fi
+
+    if ! cp -v $CMOS_DIR_EXTRAS/settings.ini $HOME/.config/gtk-3.0; then
+    
+        echo -e "\n[-] Failed to copy the rofi config.\n"
         exit 1
     
     fi
