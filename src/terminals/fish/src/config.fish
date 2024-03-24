@@ -117,7 +117,7 @@ function scanPorts
 end
 
 
-#starShip
+# StarShip
 starship init fish | source
 
 # opam configuration
