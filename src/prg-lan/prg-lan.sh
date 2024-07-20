@@ -27,7 +27,7 @@ paru -S python-gym
 sudo pacman -S qt5-quickcontrols qt5-script qt5-sensors qt5-tools qt5-webchannel qt5-webengine qt5-webkit qt5-websockets
 
 ## C/C++
-sudo pacman -S valgrind gdb cmake man-pages
+sudo pacman -S valgrind gdb cmake man-pages strace ltrace
 
 ## Ocaml
 sudo pacman -S ocaml dune opam
@@ -44,13 +44,14 @@ sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 sudo systemctl enable mariadb.service postgresql.service
 
 ## Android
-sudo pacman -S android-emulator android-file-transfer android-sdk android-sdk-platform-tools android-tools android-udev
+sudo pacman -S android-file-transfer android-sdk android-sdk-platform-tools android-tools android-udev
+paru -S android-emulator
 
 ## Virtualbox
-sudo pacman -S virtual virtualbox-host-modules-arch virtualbox-guest-iso
+sudo pacman -S virtualbox-host-modules-arch virtualbox-guest-iso
 sudo usermod -aG vboxusers $USER
 paru -S virtualbox-ext-oracle
 
 ## ohters
-sudo pacman -S rust go ruby nodejs npm docker 
+sudo pacman -S rust go ruby nodejs npm docker elixir julia
 sudo usermod -aG docker $USER
