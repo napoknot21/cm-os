@@ -131,3 +131,28 @@ super + alt + {Left,Down,Up,Right}
 # Open Browser 
 super + shift + f
     /usr/bin/brave
+
+#
+# System keys
+#
+
+# Audio keys
+# Raise volume
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+ 
+# Lover volume
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -5%
+ 
+# Mute
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness up
+XF86MonBrightnessUp
+    brightnessctl set +10%
+
+# Brightness down
+XF86MonBrightnessDown
+    brightnessctl set 10%-

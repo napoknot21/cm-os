@@ -20,5 +20,5 @@ bspc rule -a Screenkey manage=off
 # Custom
 feh --bg-fill ~/Images/Wallpapers/arch-fond06.jpg &
 ~/.config/polybar/./launch.sh &
-picom ~/.config/picom/picom_bspwm.conf &
+picom --config ~/.config/picom/picom_bspwm.conf &
 wmname LG3D &
