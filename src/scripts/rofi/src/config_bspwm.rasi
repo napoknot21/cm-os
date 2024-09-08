@@ -1,1 +1,8 @@
+configuration {
+    modi: "window,drun,ssh,combi";
+    ssh-client : "ssh";
+    icon-theme : "Papirus";
+    combi-modi: "window,drun,ssh";
+    show-icons : true;
+}
 @theme "/home/napoknot21/.config/rofi/themes/nord.rasi"
