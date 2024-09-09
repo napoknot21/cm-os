@@ -18,7 +18,24 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 # Custom
+
+# Feh
 feh --bg-fill ~/Images/Wallpapers/arch-fond06.jpg &
+
+# Polybar
 ~/.config/polybar/./launch.sh &
+
+# Picom
 picom --config ~/.config/picom/picom_bspwm.conf &
+
+# Java issue
 wmname LG3D &
+
+# Battery
+cbatticon &
+
+# Network
+nm-applet &
+
+# Sound
+volumeicon &
