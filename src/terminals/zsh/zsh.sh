@@ -6,7 +6,7 @@ echo -e "\n[!] ZSH !\n"
 
 # Package installation
 echo -e "\n[*] Installing the package...\n"
-sudo pacman -S zsh zsh-theme-powerlevel10k zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions
 
 # Config
 echo -e "\n[*] Setting up the fastest shell...\n"
