@@ -30,6 +30,7 @@ if [[ ! -f "$GITCONFIG_FILE" ]]; then
     # Create the .gitconfig file and add name and email
     git config --global user.name "$name_git"
     git config --global user.email "$email_git"
+    git config --global init.defaultBranch main
 
     echo -e "\n[+] .gitconfig has been created with the provided name and email."
 
