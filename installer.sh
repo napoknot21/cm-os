@@ -489,12 +489,12 @@ final_config ()
     
     fi
 
-    echo -e "\n[+] BFinal config set up successfully !\n"
+    echo -e "\n[+] Final config set up successfully !\n"
 }
 
 
 
-# Main script
+# Main script function
 echo -en "\n[?] Do you want to start the installation and CM-OS set up? [y/n] : "
 read START_ANSWER
 
@@ -513,6 +513,8 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
 
     sleep 1
 
+    install_paru
+
     install_shell
 
     install_terminal
@@ -526,8 +528,6 @@ if [[ $START_ANSWER = [Yy] || -z $START_ANSWER ]]; then
     sleep 1
 
     install_fonts
-    
-    install_paru
 
     install_lang
 
