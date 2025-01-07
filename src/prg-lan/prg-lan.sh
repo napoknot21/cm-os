@@ -12,7 +12,7 @@
 ## Java
 sudo pacman -S java-runtime-common java-environment-common
 sudo pacman -S jdk-openjdk openjdk-doc
-sudo pacman -S java-openjfx java-openjfx-doc
+sudo pacman -S java-openjfx
 
 ## Python
 sudo pacman -S tk python-pyqt5
