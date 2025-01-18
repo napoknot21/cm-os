@@ -434,18 +434,21 @@ install_themes()
 {
     echo -e "\n[!] THEME Material Black Blueberry !\n"
 
-    #icons=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru_1.9.3.zip)
-    #theme=$(unzip $CMOS_PATH/extras/themes/Material-Black-Blueberry-2.9.9-05.zip)
+    unzip -o $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru_1.9.3.zip -d $CMOS_PATH/extras/themes/
+    unzip -o $CMOS_PATH/extras/themes/Material-Black-Blueberry-2.9.9-05.zip -d $CMOS_PATH/extras/themes/
 
-    #sudo mv $icons /usr/share/icons
-    #sudo mv $theme /usr/share/themes
+    if [ $? -ne 0 ]; then
+        echo -e "\n[-] Échec de l'extraction des fichiers du thème et des icônes...\n"
+        exit 1
+    fi
 
-    #if [ $? -ne 0 ]; then
-    
-    #    echo -e "\n[-] Failed to config the theme and the icons...\n"
-        #exit 1
-    
-    #fi
+    sudo mv $CMOS_PATH/extras/themes/Material-Black-Blueberry-Suru /usr/share/icons
+    sudo mv $CMOS_PATH/extras/themes/Material-Black-Blueberry /usr/share/themes
+
+    if [ $? -ne 0 ]; then
+        echo -e "\n[-] Failed to move theme and icon files...\n"
+        exit 1
+    fi
 
     if ! cp -v $CMOS_DIR_EXTRAS/.gtkrc-2.0 $HOME; then
     

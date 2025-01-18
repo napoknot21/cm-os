@@ -8,7 +8,7 @@ sudo pacman -S feh
 # Icons and widgets
 sudo pacman -S volumeicon udiskie cbatticon libnotify notification-daemon neofetch picom
 
-sudo echo -e "[D-BUS Service]\nName=org.freedesktop.Notifications\nExec=/usr/lib/notification-daemon-1.0/notification-daemon" > /usr/share/dbus-1/services/org.freedesktop.Notifications.service
+echo -e "[D-BUS Service]\nName=org.freedesktop.Notifications\nExec=/usr/lib/notification-daemon-1.0/notification-daemon" | sudo tee /usr/share/dbus-1/services/org.freedesktop.Notifications.service > /dev/null
 
 # Test for notifications
 notify-send 'If you see that, the notifications are perfect'
