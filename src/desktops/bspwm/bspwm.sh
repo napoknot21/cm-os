@@ -7,7 +7,7 @@ echo -e "\n[!] BSPWM !\n"
 # Package installation
 echo -e "\n[*] Installing the package...\n"
 
-sudo pacman -S bspwm sxhkd
+sudo pacman -S bspwm sxhkd wmname 
 
 # Config
 echo -e "\n[*] Setting up the customized tiling window manager...\n"
