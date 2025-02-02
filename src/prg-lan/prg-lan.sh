@@ -17,7 +17,7 @@ sudo pacman -S java-openjfx
 ## Python
 sudo pacman -S tk python-pyqt5
 sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
-sudo pacman -S python-tensorflow python-pytorch
+sudo pacman -S python-tensorflow python-pytorch python-scikit-learn
 
 # Addional pcks
 sudo pacman -S ipython python-regex python-cv2 python-opencv
