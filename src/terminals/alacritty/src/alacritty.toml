@@ -1,6 +1,18 @@
 [colors.primary]
 background = "#000000"
 
+#[font.bold]
+#family = "JetBrainsMono Nerd Font"
+#style = "Bold"
+
+#[font.italic]
+#family = "JetBrainsMono Nerd Font"
+#style = "Italic"
+
+#[font.normal]
+#family = "JetBrainsMono Nerd Font"
+#style = "Regular"
+
 [window]
 opacity = 0.8
 
