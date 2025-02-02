@@ -16,7 +16,7 @@ sudo pacman -S java-openjfx
 
 ## Python
 sudo pacman -S tk python-pyqt5
-sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy
+sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy python-seaborn
 sudo pacman -S python-tensorflow python-pytorch python-scikit-learn
 
 # Addional pcks
