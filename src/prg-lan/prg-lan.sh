@@ -48,7 +48,7 @@ sudo pacman -S android-file-transfer android-sdk android-sdk-platform-tools andr
 paru -S android-emulator
 
 ## Virtualbox
-sudo pacman -S virtualbox-host-modules-arch virtualbox-guest-iso
+sudo pacman -S virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
 sudo usermod -aG vboxusers $USER
 paru -S virtualbox-ext-oracle
 
