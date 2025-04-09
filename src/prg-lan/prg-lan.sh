@@ -16,12 +16,17 @@ sudo pacman -S java-openjfx
 
 ## Python
 sudo pacman -S tk python-pyqt5
-sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy python-seaborn
-sudo pacman -S python-tensorflow python-pytorch python-scikit-learn
+
+# Python for Data Science
+sudo pacman -S pyhton-pandas python-networkx python-matplotlib python-numpy python-seaborn python-gdal
+
+# Python for AI
+sudo pacman -S python-tensorflow python-pytorch python-torchvision python-scikit-learn
+# sudo pacman -S python-tensorflow-cuda python-pytorch-cuda python-torchvision python-scikit-learn
 
 # Addional pcks
 sudo pacman -S ipython python-regex python-cv2 python-opencv
-paru -S python-gym
+paru -S python-gymnasium
 
 # QT5
 sudo pacman -S qt5-quickcontrols qt5-script qt5-sensors qt5-tools qt5-webchannel qt5-webengine qt5-webkit qt5-websockets
