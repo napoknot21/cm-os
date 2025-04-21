@@ -242,6 +242,112 @@ screens = [
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
         # x11_drag_polling_rate = 60,
     ),
+
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    foreground=["#f1ffff","#f1ffff"],
+                    #background=["#0f101a","#0f101a"],
+                    font='UbuntuMono Nerd Font',
+                    fontsize=16,
+                    margin_y=3,
+                    margin_x=0,
+                    padding_y=8,
+                    padding_x=5,
+                    borderwidth=1,
+                    active=["#f1ffff","#f1ffff"], #light
+                    inactive=["#f1ffff","#f1ffff"], # inactive orginal color "#4c566a" (light now)
+                    rounded=True,
+                    highlight_method='block',
+                    urgent_alert_method='block',
+                    urgent_border=["#F07178","#F07178"], # urgent
+                    this_current_screen_border=["#F07178","#F07178"], #focus original color "#a151d3" (urgent now)
+                    this_screen_border=["#5c5c5c","#5c5c5c"], #grey original oolor "#353c4a" (other now)
+                    other_current_screen_border=["#0f101a","#0f101a"], # dark
+                    other_screen_border=["#0f101a","#0f101a"], #dark
+                    disable_drag=True
+                ),
+                #widget.Prompt(),
+                
+                # Window name
+                widget.WindowName(
+                    foreground=["#F07178","#F07178"],
+                    #background=["#0f101a","#0f101a"],
+                    fontsize=16,
+                    font='UbuntuMono Nerd Font Bold'
+                ),
+                
+                widget.TextBox(
+                    foreground=["#F07178","#F07178"],
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=40,
+                    padding=0
+                ),
+                widget.CurrentLayoutIcon(
+                    foreground=["#0f101a","#0f101a"],
+                    background=["#F07178","#F07178"],
+                    scale=0.65
+                ),
+                widget.CurrentLayout(
+                    foreground=["#0f101a","#0f101a"],
+                    background=["#F07178","#F07178"]
+                ),
+                
+                
+                # Layout
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=["#F07178","#F07178"]
+                ),
+
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=["#F07178","#F07178"]
+                ),
+                
+                #widget.TextBox("default config", name="default"),
+                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # widget.StatusNotifier(),
+                
+                # Clock 
+                widget.TextBox(
+                    foreground=["#a151d3","#a151d3"],
+                    background=["#F07178","#F07178"],
+                    text="", # !  Icon: nf-oct-triangle_left
+                    fontsize=38,
+                    padding=0
+                ),
+                widget.TextBox(
+                    background=["#a151d3","#a151d3"],
+                    foreground=["#000000","#000000"], #["#0f101a","#0f101a"],
+                    text="󰔠 "
+                ),
+                widget.Clock(
+                    background=["#a151d3","#a151d3"],
+                    foreground=["#000000","#000000"],
+                    padding=5,
+                    format='%d/%m/%Y - %H:%M '
+                    #format="%Y-%m-%d %a %I:%M %p"
+                ),
+                #widget.QuickExit(),
+            ],
+            24,
+            opacity=0.80
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        ),
+    ),
 ]
 
 # Drag floating layouts.
