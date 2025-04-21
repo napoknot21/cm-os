@@ -19,7 +19,7 @@ QTILE_DIR=$1
 mkdir -p $HOME/.config/qtile
 
 # Copying files
-if ! cp -rv $QTILE_DIR/src/* $HOME/.config/qtile; then
+if ! cp -rv $QTILE_DIR/src_2/* $HOME/.config/qtile; then
 
     echo -e "\n[-] Failed to copy config files. Aborting...\n"
     exit 1
