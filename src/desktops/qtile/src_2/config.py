@@ -164,7 +164,7 @@ screens = [
                     fontsize=40,
                     padding=0
                 ),
-                widget.CurrentLayoutIcon(
+                widget.CurrentLayout( # Icon
                     foreground=["#0f101a","#0f101a"],
                     background=["#F07178","#F07178"],
                     scale=0.65
@@ -284,7 +284,7 @@ screens = [
                     fontsize=40,
                     padding=0
                 ),
-                widget.CurrentLayoutIcon(
+                widget.CurrentLayout(  # Icon
                     foreground=["#0f101a","#0f101a"],
                     background=["#F07178","#F07178"],
                     scale=0.65

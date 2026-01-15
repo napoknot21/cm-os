@@ -62,7 +62,7 @@ keys = [
     Key([mod, "shift"], "m", lazy.spawn("/usr/bin/rofi -show window -config ~/.config/rofi/config_qtile.rasi"), desc="list all the active windows"),
     
     # Scrot (screenshot)
-    Key([mod], "s", lazy.spawn("/usr/bin/scrot -e 'mv $f ~/Images/Screenshots/'"), desc="take a screenshot of the (all) window(s)"),
+    Key([mod], "s", lazy.spawn("/usr/bin/scrot -e 'mv $f ~/Images/Screenshots/ && xclip -selection clipboard -t image/png -i ~/Images/Screenshots/$f'"), desc="take a screenshot of the (all) window(s)"),
     
     # Redshitf (temperature)
     Key([mod], "x", lazy.spawn("/usr/bin/redshift -O 2400"), desc="turns temperature to 2400 for hurt less the eyes"),
